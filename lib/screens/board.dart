@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jewel_swipe/models/block.dart';
 import 'package:jewel_swipe/models/pixel.dart';
@@ -66,8 +67,13 @@ class _GameScreenState extends State<GameScreen> {
     }); */
   }
 
-  void animateAddBlocks(List<Row> stackedRowBlocks,Row currentRowBlock) {
-    stack
+  void animateAddBlocks(List<Row> stackedRowBlocks, Row currentRowBlock) {
+    stackedRowBlocks.animate().moveY(
+          begin: 0,
+          end: (MediaQuery.of(context).size.width - 48.w) / 8,
+          duration: 400.milliseconds,
+          curve: Curves.easeIn,
+        );
     Future.delayed(400.milliseconds, () {
       setState(() {
         stackedRowBlocks.add(currentRowBlock);
@@ -117,8 +123,6 @@ class _GameScreenState extends State<GameScreen> {
     Column buildStackedRowBlocks(List<Row> stackedRowBlocks) {
       return Column(children: stackedRowBlocks);
     }
-
-    
 
     return Scaffold(
       backgroundColor: Colors.deepPurple,
@@ -449,5 +453,3 @@ class _GameScreenState extends State<GameScreen> {
     return row;
   }
 }
-
-
