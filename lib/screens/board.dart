@@ -74,7 +74,7 @@ class _GameScreenState extends State<GameScreen> {
           duration: 400.milliseconds,
           curve: Curves.easeIn,
         ); */
-    Future.delayed(400.milliseconds, () {
+    Future.delayed(0.milliseconds, () {
       setState(() {
         stackedRowBlocks.add(currentRowBlock);
       });
