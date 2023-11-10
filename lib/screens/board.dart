@@ -50,7 +50,7 @@ class _GameScreenState extends State<GameScreen> {
       stackedRowBlockInts = [];
       stackedRowBlocks = [];
       stackedRowBlockInts.add(currentRowBlockInts);
-      addBlocks(stackedRowBlocks, currentRowBlock);
+      animateAddBlocks(stackedRowBlocks, currentRowBlock);
       stackedRowBlocks.add(currentRowBlock);
     });
 
@@ -437,4 +437,11 @@ class _GameScreenState extends State<GameScreen> {
     // print("Row: $row");
     return row;
   }
+}
+
+void animateAddBlocks(stackedRowBlocks, currentRowBlock) {
+  stackedRowBlocks.add(currentRowBlock);
+  Future.delayed(400.milliseconds, () {
+    setState(() {});
+  });
 }
