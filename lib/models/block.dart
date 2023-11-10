@@ -59,7 +59,6 @@ class Block {
   } */
 
   void buildBlock() {
-    
     double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
     double width =
         (MediaQuery.of(context).size.width - 48.w) / rowLength * pieceWidth +
@@ -68,7 +67,17 @@ class Block {
 
     pieceWidget = (mass == BlockMass.filled)
         ? Draggable(
-          feedback: Container(
+          axis: Axi,
+            childWhenDragging: Container(
+              height: height,
+              width: width,
+              margin: EdgeInsets.all(.5.sp),
+              decoration: BoxDecoration(
+                color: color?.withOpacity(.4),
+                borderRadius: BorderRadius.circular(5.r),
+              ),
+            ),
+            feedback: Container(
               height: height,
               width: width,
               margin: EdgeInsets.all(.5.sp),
@@ -77,7 +86,7 @@ class Block {
                 borderRadius: BorderRadius.circular(5.r),
               ),
             ),
-          child: Container(
+            child: Container(
               height: height,
               width: width,
               margin: EdgeInsets.all(.5.sp),
@@ -86,7 +95,7 @@ class Block {
                 borderRadius: BorderRadius.circular(5.r),
               ),
             ),
-        )
+          )
         : Container(
             height: height,
             width: width,
