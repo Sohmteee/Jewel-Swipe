@@ -403,7 +403,9 @@ class _GameScreenState extends State<GameScreen> {
           row.add({"pieceWidth": pieceWidth, "color": color});
           availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
         } else {
-          row.add();
+          int pieceWidth = 0;
+          Color color = Colors.transparent;
+          row.add({"pieceWidth": pieceWidth, "color": color});
           availableSpace -= 1;
         }
       } else {
