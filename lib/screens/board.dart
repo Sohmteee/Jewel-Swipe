@@ -337,9 +337,9 @@ class _GameScreenState extends State<GameScreen> {
     int count = 1;
 
     while (bottomBlockIndex + count < bottomRowBlockInts.length &&
-        bottomRowBlockInts[bottomBlockIndex + count] == 0) {
+        bottomRowBlockInts[bottomBlockIndex + count]["pieceWidth"] == 0) {
       int index = bottomBlockIndex + count;
-      if (bottomRowBlockInts[index] == 0) {
+      if (bottomRowBlockInts[index]["pieceWidth"] == 0) {
         count += 1;
       } else {
         break;
