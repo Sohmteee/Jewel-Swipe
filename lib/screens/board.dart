@@ -254,7 +254,7 @@ class _GameScreenState extends State<GameScreen> {
                   (bottomRowBlockInts[i]["pieceWidth"] == 0 ? 1 : bottomRowBlockInts[i]["pieceWidth"]) <=
               position) {
             bottomPosition +=
-                bottomRowBlockInts[i]["pieceWidth"] == 0 ? 1 : bottomRowBlockInts[i]["pieceWidth"].toInt();
+                bottomRowBlockInts[i]["pieceWidth"] == 0 ? 1 : bottomRowBlockInts[i]["pieceWidth"];
           } else {
             bottomBlockIndex = i;
             break;
@@ -266,7 +266,7 @@ class _GameScreenState extends State<GameScreen> {
         // calculate the position of the row block int
         position += (rowBlockInt == 0) ? 1 : rowBlockInt;
 
-        bottomBlock = bottomRowBlockInts[bottomBlockIndex];
+        bottomBlock = bottomRowBlockInts[bottomBlockIndex]["pieceWidth"];
 
         // check if the pixel under it is empty
         if (bottomBlock == 0) {
