@@ -10,12 +10,15 @@ class Block {
 
   Block(
     this.context, {
+    required this.index,
     required this.pieceWidth,
     this.color,
     required this.mass,
     this.isBeingDragged,
   });
 
+  int index;
+  List<int> position = [];
   List<int> position = [];
   Color? color = Colors.yellow;
   BlockMass mass;
@@ -88,7 +91,7 @@ class Block {
                 borderRadius: BorderRadius.circular(5.r),
               ),
             ),
-            
+
             child: Container(
               height: height,
               width: width,

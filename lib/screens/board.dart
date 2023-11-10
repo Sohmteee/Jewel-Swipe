@@ -376,7 +376,8 @@ class _GameScreenState extends State<GameScreen> {
   Row buildBlockRow(List<Map<String, dynamic>> rowBlockInts) {
     List<Widget> rowBlocks = [];
 
-    for (var block in rowBlockInts) {
+    for (int i = 0; i < rowBlockInts.length; i++) {
+      var block = rowBlockInts[i];
       if (block["pieceWidth"] == 0) {
         var rowBlock = Block(
           context,
