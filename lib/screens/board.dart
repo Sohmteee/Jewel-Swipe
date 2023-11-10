@@ -429,7 +429,6 @@ class _GameScreenState extends State<GameScreen> {
         availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
       }
 
-      print("Row numbers: $rowNumbers");
     }
 
     // print("Row: $row");
