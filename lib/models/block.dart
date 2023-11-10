@@ -68,8 +68,8 @@ class Block {
     pieceWidget = (mass == BlockMass.filled)
         ? Draggable(
             // data: position,
-            affinity: Axis.horizontal,
-            // axis: Axis.horizontal,,
+            // affinity: Axis.horizontal,
+            axis: Axis.horizontal,
             childWhenDragging: Container(
               height: height,
               width: width,
