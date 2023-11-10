@@ -120,8 +120,13 @@ class _GameScreenState extends State<GameScreen> {
       return false; // The piece is not over any pixel
     } */
 
-    Column buildStackedRowBlocks(List<Row> stackedRowBlocks) {
-      return Column(children: stackedRowBlocks);
+    Animate buildStackedRowBlocks(List<Row> stackedRowBlocks) {
+      return Column(children: stackedRowBlocks).animate().moveY(
+            begin: 0,
+            end: -(MediaQuery.of(context).size.width - 48.w) / 8,
+            duration: 400.milliseconds,
+            curve: Curves.easeIn,
+          );
     }
 
     return Scaffold(
@@ -148,12 +153,7 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     ),
                   ),
-                  buildStackedRowBlocks(stackedRowBlocks).animate().moveY(
-                        begin: 0,
-                        end: -(MediaQuery.of(context).size.width - 48.w) / 8,
-                        duration: 400.milliseconds,
-                        curve: Curves.easeIn,
-                      ),
+                  buildStackedRowBlocks(stackedRowBlocks)
                 ],
               ),
               SizedBox(height: 5.h),
