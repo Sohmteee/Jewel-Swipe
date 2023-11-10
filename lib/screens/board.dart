@@ -66,10 +66,8 @@ class _GameScreenState extends State<GameScreen> {
     }); */
   }
 
-  void animateAddBlocks(stackedRowBlocks, currentRowBlock) {
-    for (var element in collection) {
-      
-    }
+  void animateAddBlocks(List<Row> stackedRowBlocks,Row currentRowBlock) {
+    atacked
     Future.delayed(400.milliseconds, () {
       setState(() {
         stackedRowBlocks.add(currentRowBlock);
