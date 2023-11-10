@@ -120,13 +120,8 @@ class _GameScreenState extends State<GameScreen> {
       return false; // The piece is not over any pixel
     } */
 
-    Animate buildStackedRowBlocks(List<Row> stackedRowBlocks) {
-      return Column(children: stackedRowBlocks).animate().moveY(
-            begin: 0,
-            end: -(MediaQuery.of(context).size.width - 48.w) / 8,
-            duration: 400.milliseconds,
-            curve: Curves.easeIn,
-          );
+    Column buildStackedRowBlocks(List<Row> stackedRowBlocks) {
+      return Column(children: stackedRowBlocks);
     }
 
     return Scaffold(
