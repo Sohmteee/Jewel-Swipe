@@ -68,7 +68,6 @@ class Block {
     pieceWidget = (mass == BlockMass.filled)
         ? Draggable(
             // data: position,
-            affinity: Axis.horizontal,
             axis: Axis.horizontal,
 
             childWhenDragging: Container(
@@ -99,18 +98,19 @@ class Block {
               ),
             ),
           )
-        : DragTarget(builder: (context, candidateItems, rejectedItems) {
-            return Container(
-              height: height,
-              width: width,
-              color: Colors.transparent,
-              margin: EdgeInsets.all(.5.sp),
-            );
-          }, onWillAccept: (data) {
-            return true;
-          }, onAccept: (data) {
-            print('accepted');
-          });
+        : DragTarget(
+            builder: (context, candidateItems, rejectedItems) {
+              return Container(
+                height: height,
+                width: width,
+                color: Colors.transparent,
+                margin: EdgeInsets.all(.5.sp),
+              );
+            },
+            onAccept: (data) {
+              print('accepted');
+            },
+          );
   }
 
   void moveBlock(Directions direction) {
