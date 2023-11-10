@@ -388,6 +388,7 @@ class _GameScreenState extends State<GameScreen> {
 
   List<Map<String, dynamic>> generateRowInts() {
     List<Map<String, dynamic>> row = [];
+    List rowNumbers = [];
     int availableSpace = 8;
 
     final List<Color> colors = [
@@ -405,7 +406,6 @@ class _GameScreenState extends State<GameScreen> {
       return colors[index];
     }
 
-    List rowNumbers = [];
 
     while (availableSpace > 0) {
       if (availableSpace <= 4) {
