@@ -68,8 +68,9 @@ class Block {
     pieceWidget = (mass == BlockMass.filled)
         ? Draggable(
             // data: position,
-            // affinity: Axis.horizontal,
+            affinity: Axis.horizontal,
             axis: Axis.horizontal,
+
             childWhenDragging: Container(
               height: height,
               width: width,
@@ -88,31 +89,28 @@ class Block {
                 borderRadius: BorderRadius.circular(5.r),
               ),
             ),
-            child: DragTarget(
-              builder: (context, candidateItems, rejectedItems) {
-                Color targetColor = Colors.transparent;
-                return Container(
-                  height: height,
-                  width: width,
-                  margin: EdgeInsets.all(.5.sp),
-                  decoration: BoxDecoration(
-                    color: targetColor,
-                    borderRadius: BorderRadius.circular(5.r),
-                  ),
-                );
-              },
-              onAccept: (block) {
-                print('onAccept');
-                print(block);
-              },
+            child: Container(
+              height: height,
+              width: width,
+              margin: EdgeInsets.all(.5.sp),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(5.r),
+              ),
             ),
           )
-        : Container(
-            height: height,
-            width: width,
-            color: Colors.transparent,
-            margin: EdgeInsets.all(.5.sp),
-          );
+        : DragTarget(builder: (context, candidateItems, rejectedItems) {
+            return Container(
+              height: height,
+              width: width,
+              color: Colors.transparent,
+              margin: EdgeInsets.all(.5.sp),
+            );
+          }, onWillAccept: (data) {
+            return true;
+          }, onAccept: (data) {
+            print('accepted');
+          });
   }
 
   void moveBlock(Directions direction) {
