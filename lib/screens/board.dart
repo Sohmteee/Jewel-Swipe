@@ -283,19 +283,19 @@ class _GameScreenState extends State<GameScreen> {
           if (canDrop) {
             // drop the block
             print("Dropping block");
-            int length = rowBlockInts[blockIndex]["pieceWidth"];
+            Map<String, dynamic> droppingBlock = rowBlockInts[blockIndex];
 
             //replace the remaning parts of the block with zeros
             rowBlockInts[blockIndex]["pieceWidth"] = 0;
-            for (int i = 0; i < length - 1; i++) {
+            for (int i = 0; i < droppingBlock - 1; i++) {
               rowBlockInts.insert(blockIndex, {"pieceWidth": 0, "color": Colors.transparent});
             }
 
             // update the bottom row block ints
-            for (int i = bottomBlockIndex; i < bottomBlockIndex + length; i++) {
+            for (int i = bottomBlockIndex; i < bottomBlockIndex + droppingBlock; i++) {
               bottomRowBlockInts.removeAt(bottomBlockIndex);
             }
-            bottomRowBlockInts.insert(bottomBlockIndex, length);
+            bottomRowBlockInts.insert(bottomBlockIndex, droppingBlock);
 
             print(stackedRowBlockInts);
 
