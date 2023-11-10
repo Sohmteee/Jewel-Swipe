@@ -11,6 +11,7 @@ class Block {
   Block(
     this.context, {
     required this.index,
+    required this.rowInts,
     required this.pieceWidth,
     this.color,
     required this.mass,
@@ -18,7 +19,7 @@ class Block {
   });
 
   int index;
-  List<int> position = [];
+  List<int> rowInts = [];
   List<int> position = [];
   Color? color = Colors.yellow;
   BlockMass mass;
