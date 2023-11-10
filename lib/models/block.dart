@@ -101,9 +101,8 @@ class Block {
                   ),
                 );
               },
-              onWillAccept: (block) {
+              onAccept: (block) {
                 targetColor = Colors.red;
-                return true;
               },
             ),
           )
