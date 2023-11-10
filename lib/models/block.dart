@@ -103,6 +103,7 @@ class Block {
               },
               onWillAccept: (block) {
                 targetColor = Colors.red;
+                return true;
               },
             ),
           )
