@@ -89,20 +89,22 @@ class Block {
               ),
             ),
             child: DragTarget(
+
               builder: (context, candidateItems, rejectedItems) {
+                Color targetColor = Colors.transparent;
                 return Container(
                   height: height,
                   width: width,
                   margin: EdgeInsets.all(.5.sp),
                   decoration: BoxDecoration(
-                    color: color,
+                    color: targetColor,
                     borderRadius: BorderRadius.circular(5.r),
                   ),
                 );
               },
-
               onAccept: (block) {
-                
+                print('onAccept');
+                print(block);
               },
             ),
           )
