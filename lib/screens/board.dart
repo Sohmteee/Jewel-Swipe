@@ -399,7 +399,8 @@ class _GameScreenState extends State<GameScreen> {
       if (availableSpace <= 4) {
         if (row.contains(0)) {
           int pieceWidth = Random().nextInt(availableSpace + 1);
-          row.add(pieceWidth);
+          Color color = generateColor();
+          row.add({"pieceWidth"});
           availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
         } else {
           row.add(0);
