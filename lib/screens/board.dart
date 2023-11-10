@@ -259,7 +259,7 @@ class _GameScreenState extends State<GameScreen> {
               position) {
             bottomPosition += bottomRowBlockInts[i]["pieceWidth"] == 0
                 ? 1
-                : bottomRowBlockInts[i]["pieceWidth"];
+                : int.parse(bottomRowBlockInts[i]["pieceWidth"].toString());
           } else {
             bottomBlockIndex = i;
             break;
