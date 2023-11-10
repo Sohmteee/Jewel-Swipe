@@ -376,7 +376,7 @@ class _GameScreenState extends State<GameScreen> {
   Row buildBlockRow(List<Map<String, dynamic>> rowBlockInts) {
     List<Widget> rowBlocks = [];
 
-    List rowNumbers = List.generate(rowBlockInts.length, (index) => rowBlockInts[index]["pieceWidth"]);
+    List<int> rowNumbers = List.generate(rowBlockInts.length, (index) => rowBlockInts[index]["pieceWidth"]);
 
     for (int i = 0; i < rowBlockInts.length; i++) {
       var block = rowBlockInts[i];
@@ -384,7 +384,7 @@ class _GameScreenState extends State<GameScreen> {
         var rowBlock = Block(
           context,
           index: i,
-          rowInts: rowBlockInts,
+          rowInts: rowNumbers,
           pieceWidth: 1,
           color: Colors.transparent,
           mass: BlockMass.empty,
@@ -396,6 +396,8 @@ class _GameScreenState extends State<GameScreen> {
       } else {
         var rowBlock = Block(
           context,
+          index: i,
+          rowInts: rowNumbers,
           pieceWidth: block["pieceWidth"],
           color: block["color"],
           mass: BlockMass.filled,
