@@ -226,7 +226,8 @@ class _GameScreenState extends State<GameScreen> {
     for (int rowBlockIndex = stackedRowBlockInts.length - 2;
         rowBlockIndex >= 0;
         rowBlockIndex--) {
-      List<Map<String, dynamic>> rowBlockInts = stackedRowBlockInts[rowBlockIndex];
+      List<Map<String, dynamic>> rowBlockInts =
+          stackedRowBlockInts[rowBlockIndex];
       int position = 0;
 
       // loop through each of the blocks in the current row
@@ -243,7 +244,8 @@ class _GameScreenState extends State<GameScreen> {
         print("Current position: $position");
 
         // find the block right under the current block
-        List<Map<String, dynamic>> bottomRowBlockInts = stackedRowBlockInts[rowBlockIndex + 1];
+        List<Map<String, dynamic>> bottomRowBlockInts =
+            stackedRowBlockInts[rowBlockIndex + 1];
 
         int bottomBlock = 0;
         int bottomBlockIndex = 0;
@@ -251,10 +253,13 @@ class _GameScreenState extends State<GameScreen> {
 
         for (int i = 0; i < bottomRowBlockInts.length; i++) {
           if (bottomPosition +
-                  (bottomRowBlockInts[i]["pieceWidth"] == 0 ? 1 : bottomRowBlockInts[i]["pieceWidth"]) <=
+                  (bottomRowBlockInts[i]["pieceWidth"] == 0
+                      ? 1
+                      : bottomRowBlockInts[i]["pieceWidth"]) <=
               position) {
-            bottomPosition +=
-                bottomRowBlockInts[i]["pieceWidth"] == 0 ? 1 : bottomRowBlockInts[i]["pieceWidth"];
+            bottomPosition += bottomRowBlockInts[i]["pieceWidth"] == 0
+                ? 1
+                : int.parse(bottomRowBlockInts[i]["pieceWidth"]);
           } else {
             bottomBlockIndex = i;
             break;
@@ -288,11 +293,14 @@ class _GameScreenState extends State<GameScreen> {
             //replace the remaning parts of the block with zeros
             rowBlockInts[blockIndex]["pieceWidth"] = 0;
             for (int i = 0; i < droppingBlock["pieceWidth"] - 1; i++) {
-              rowBlockInts.insert(blockIndex, {"pieceWidth": 0, "color": Colors.transparent});
+              rowBlockInts.insert(
+                  blockIndex, {"pieceWidth": 0, "color": Colors.transparent});
             }
 
             // update the bottom row block ints
-            for (int i = bottomBlockIndex; i < bottomBlockIndex + droppingBlock["pieceWidth"]; i++) {
+            for (int i = bottomBlockIndex;
+                i < bottomBlockIndex + droppingBlock["pieceWidth"];
+                i++) {
               bottomRowBlockInts.removeAt(bottomBlockIndex);
             }
             bottomRowBlockInts.insert(bottomBlockIndex, droppingBlock);
@@ -382,7 +390,7 @@ class _GameScreenState extends State<GameScreen> {
     List<Map<String, dynamic>> row = [];
     int availableSpace = 8;
 
-      final List<Color> colors = [
+    final List<Color> colors = [
       Colors.red[300]!,
       Colors.blue[300]!,
       Colors.green[300]!,
