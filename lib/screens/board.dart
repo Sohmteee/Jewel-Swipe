@@ -19,7 +19,7 @@ class _GameScreenState extends State<GameScreen> {
   Row currentRowBlock = const Row(), nextRowBlock = const Row();
   List<Map<String, dynamic>> currentRowBlockInts = [], nextRowBlockInts = [];
   List<Row> stackedRowBlocks = [];
-  List<List<int>> stackedRowBlockInts = [];
+  List<List<Map<String, dynamic>>> stackedRowBlockInts = [];
   double? x, y;
 
   @override
@@ -226,12 +226,12 @@ class _GameScreenState extends State<GameScreen> {
     for (int rowBlockIndex = stackedRowBlockInts.length - 2;
         rowBlockIndex >= 0;
         rowBlockIndex--) {
-      List<int> rowBlockInts = stackedRowBlockInts[rowBlockIndex];
+      List<Map<String, dynamic>> rowBlockInts = stackedRowBlockInts[rowBlockIndex];
       int position = 0;
 
       // loop through each of the blocks in the current row
       for (int blockIndex = 0; blockIndex < rowBlockInts.length; blockIndex++) {
-        int rowBlockInt = rowBlockInts[blockIndex];
+        int rowBlockInt = rowBlockInts[blockIndex]["pieceWidth"];
 
         // go to the next block if it's an empty one
         if (rowBlockInt == 0) {
