@@ -50,6 +50,7 @@ class _GameScreenState extends State<GameScreen> {
       stackedRowBlockInts = [];
       stackedRowBlocks = [];
       stackedRowBlockInts.add(currentRowBlockInts);
+      addBlocks(stackedRowBlocks, currentRowBlock);
       stackedRowBlocks.add(currentRowBlock);
     });
 
@@ -291,7 +292,10 @@ class _GameScreenState extends State<GameScreen> {
             Map<String, dynamic> droppingBlock = rowBlockInts[blockIndex];
 
             //replace the remaning parts of the block with zeros
-            rowBlockInts[blockIndex] = {"pieceWidth": 0, "color": Colors.transparent};
+            rowBlockInts[blockIndex] = {
+              "pieceWidth": 0,
+              "color": Colors.transparent
+            };
             for (int i = 0; i < droppingBlock["pieceWidth"] - 1; i++) {
               rowBlockInts.insert(
                   blockIndex, {"pieceWidth": 0, "color": Colors.transparent});
