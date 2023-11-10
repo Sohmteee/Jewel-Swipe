@@ -287,12 +287,12 @@ class _GameScreenState extends State<GameScreen> {
 
             //replace the remaning parts of the block with zeros
             rowBlockInts[blockIndex]["pieceWidth"] = 0;
-            for (int i = 0; i < droppingBlock - 1; i++) {
+            for (int i = 0; i < droppingBlock["pieceWidth"] - 1; i++) {
               rowBlockInts.insert(blockIndex, {"pieceWidth": 0, "color": Colors.transparent});
             }
 
             // update the bottom row block ints
-            for (int i = bottomBlockIndex; i < bottomBlockIndex + droppingBlock; i++) {
+            for (int i = bottomBlockIndex; i < bottomBlockIndex + droppingBlock["pieceWidth"]; i++) {
               bottomRowBlockInts.removeAt(bottomBlockIndex);
             }
             bottomRowBlockInts.insert(bottomBlockIndex, droppingBlock);
