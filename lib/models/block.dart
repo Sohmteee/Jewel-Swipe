@@ -88,18 +88,23 @@ class Block {
                 borderRadius: BorderRadius.circular(5.r),
               ),
             ),
-            child:
-                DragTarget(builder: (context, candidateItems, rejectedItems) {
-              return Container(
-                height: height,
-                width: width,
-                margin: EdgeInsets.all(.5.sp),
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(5.r),
-                ),
-              );
-            }),
+            child: DragTarget(
+              builder: (context, candidateItems, rejectedItems) {
+                return Container(
+                  height: height,
+                  width: width,
+                  margin: EdgeInsets.all(.5.sp),
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(5.r),
+                  ),
+                );
+              },
+
+              onAccept: (block) {
+                
+              },
+            ),
           )
         : Container(
             height: height,
