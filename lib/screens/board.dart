@@ -17,7 +17,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   // late Block currentBlock;
   Row currentRowBlock = const Row(), nextRowBlock = const Row();
-  List<int> currentRowBlockInts = [], nextRowBlockInts = [];
+  List<Map<String, dynamic>> currentRowBlockInts = [], nextRowBlockInts = [];
   List<Row> stackedRowBlocks = [];
   List<List<int>> stackedRowBlockInts = [];
   double? x, y;
@@ -410,7 +410,8 @@ class _GameScreenState extends State<GameScreen> {
         }
       } else {
         int pieceWidth = Random().nextInt(5);
-        row.add(pieceWidth);
+        Color color = generateColor();
+        row.add({"pieceWidth": pieceWidth, "color": color});
         availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
       }
     }
