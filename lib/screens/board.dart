@@ -51,7 +51,7 @@ class _GameScreenState extends State<GameScreen> {
       stackedRowBlockInts = [];
       stackedRowBlocks = [];
       stackedRowBlockInts.add(currentRowBlockInts);
-      animateAddBlocks(stackedRowBlocks, currentRowBlock);
+      animateAddBlocks();
       // stackedRowBlocks.add(currentRowBlock);
     });
 
@@ -68,7 +68,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void animateAddBlocks() {
-    stackedRowBlocks.animate().moveY(
+    .animate().moveY(
           begin: 0,
           end: (MediaQuery.of(context).size.width - 48.w) / 8,
           duration: 400.milliseconds,
@@ -202,8 +202,7 @@ class _GameScreenState extends State<GameScreen> {
                                 currentRowBlock = nextRowBlock;
 
                                 stackedRowBlockInts.add(currentRowBlockInts);
-                                animateAddBlocks(
-                                    stackedRowBlocks, currentRowBlock);
+                                animateAddBlocks();
                                 print(stackedRowBlockInts);
 
                                 nextRowBlockInts = generateRowInts();
