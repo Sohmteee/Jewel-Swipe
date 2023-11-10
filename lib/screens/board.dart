@@ -428,6 +428,8 @@ class _GameScreenState extends State<GameScreen> {
         rowNumbers.add(pieceWidth);
         availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
       }
+
+      print("Row numbers: $rowNumbers");
     }
 
     // print("Row: $row");
