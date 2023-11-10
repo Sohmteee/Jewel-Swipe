@@ -68,12 +68,12 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void animateAddBlocks() {
-    stackedRowBlocks.animate().moveY(
+    /* stackedRowBlocks.animate().moveY(
           begin: 0,
           end: (MediaQuery.of(context).size.width - 48.w) / 8,
           duration: 400.milliseconds,
           curve: Curves.easeIn,
-        );
+        ); */
     Future.delayed(400.milliseconds, () {
       setState(() {
         stackedRowBlocks.add(currentRowBlock);
@@ -148,7 +148,12 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     ),
                   ),
-                  buildStackedRowBlocks(stackedRowBlocks)
+                  buildStackedRowBlocks(stackedRowBlocks).animate().moveY(
+                        begin: 0,
+                        end: -(MediaQuery.of(context).size.width - 48.w) / 8,
+                        duration: 400.milliseconds,
+                        curve: Curves.easeIn,
+                      ),
                 ],
               ),
               SizedBox(height: 5.h),
