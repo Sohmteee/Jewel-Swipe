@@ -51,7 +51,7 @@ class _GameScreenState extends State<GameScreen> {
       stackedRowBlocks = [];
       stackedRowBlockInts.add(currentRowBlockInts);
       animateAddBlocks(stackedRowBlocks, currentRowBlock);
-      stackedRowBlocks.add(currentRowBlock);
+      // stackedRowBlocks.add(currentRowBlock);
     });
 
     final frameRate = 800.milliseconds;
@@ -64,6 +64,14 @@ class _GameScreenState extends State<GameScreen> {
         currentBlock.moveBlock(Directions.down);
       });
     }); */
+  }
+
+  void animateAddBlocks(stackedRowBlocks, currentRowBlock) {
+    Future.delayed(400.milliseconds, () {
+      setState(() {
+        stackedRowBlocks.add(currentRowBlock);
+      });
+    });
   }
 
   @override
@@ -108,6 +116,8 @@ class _GameScreenState extends State<GameScreen> {
     Column buildStackedRowBlocks(List<Row> stackedRowBlocks) {
       return Column(children: stackedRowBlocks);
     }
+
+    
 
     return Scaffold(
       backgroundColor: Colors.deepPurple,
@@ -439,9 +449,4 @@ class _GameScreenState extends State<GameScreen> {
   }
 }
 
-void animateAddBlocks(stackedRowBlocks, currentRowBlock) {
-  stackedRowBlocks.add(currentRowBlock);
-  Future.delayed(400.milliseconds, () {
-    setState(() {});
-  });
-}
+
