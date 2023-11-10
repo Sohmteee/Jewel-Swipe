@@ -380,6 +380,21 @@ class _GameScreenState extends State<GameScreen> {
     List<int> row = [];
     int availableSpace = 8;
 
+      final List<Color> colors = [
+      Colors.red[300]!,
+      Colors.blue[300]!,
+      Colors.green[300]!,
+      Colors.yellow[300]!,
+      Colors.grey[300]!,
+      Colors.orange[300]!,
+      Colors.pink[300]!,
+    ];
+
+    Color generateColor() {
+      int index = Random().nextInt(colors.length);
+      return colors[index];
+    }
+
     while (availableSpace > 0) {
       if (availableSpace <= 4) {
         if (row.contains(0)) {
