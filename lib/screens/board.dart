@@ -309,7 +309,7 @@ class _GameScreenState extends State<GameScreen> {
     Future.delayed(400.milliseconds, () {
       setState(() {
         stackedRowBlocks = [];
-        for (List<int> rowBlockInts in stackedRowBlockInts) {
+        for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockInts) {
           stackedRowBlocks.add(buildBlockRow(rowBlockInts));
         }
       });
