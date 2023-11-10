@@ -243,7 +243,7 @@ class _GameScreenState extends State<GameScreen> {
         print("Current position: $position");
 
         // find the block right under the current block
-        List<int> bottomRowBlockInts = stackedRowBlockInts[rowBlockIndex + 1];
+        List<Map<String, dynamic>> bottomRowBlockInts = stackedRowBlockInts[rowBlockIndex + 1];
 
         int bottomBlock = 0;
         int bottomBlockIndex = 0;
@@ -251,10 +251,10 @@ class _GameScreenState extends State<GameScreen> {
 
         for (int i = 0; i < bottomRowBlockInts.length; i++) {
           if (bottomPosition +
-                  (bottomRowBlockInts[i] == 0 ? 1 : bottomRowBlockInts[i]) <=
+                  (bottomRowBlockInts[i]["pieceWidth"] == 0 ? 1 : bottomRowBlockInts[i]["pieceWidth"]) <=
               position) {
             bottomPosition +=
-                bottomRowBlockInts[i] == 0 ? 1 : bottomRowBlockInts[i];
+                bottomRowBlockInts[i]["pieceWidth"] == 0 ? 1 : bottomRowBlockInts[i]["pieceWidth"];
           } else {
             bottomBlockIndex = i;
             break;
