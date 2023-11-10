@@ -400,10 +400,10 @@ class _GameScreenState extends State<GameScreen> {
         if (row.contains(0)) {
           int pieceWidth = Random().nextInt(availableSpace + 1);
           Color color = generateColor();
-          row.add({"pieceWidth"});
+          row.add({"pieceWidth": pieceWidth, "color": color});
           availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
         } else {
-          row.add(0);
+          row.add();
           availableSpace -= 1;
         }
       } else {
