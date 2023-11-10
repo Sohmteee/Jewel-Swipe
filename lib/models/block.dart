@@ -66,26 +66,33 @@ class Block {
             pieceWidth -
             1;
 
-    pieceWidget = Builder(
-      builder: (context) {
-        return (mass == BlockMass.filled)
-            ? Container(
-                height: height,
-                width: width,
-                margin: EdgeInsets.all(.5.sp),
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(5.r),
-                ),
-              )
-            : Container(
-                height: height,
-                width: width,
-                color: Colors.transparent,
-                margin: EdgeInsets.all(.5.sp),
-              );
-      }
-    );
+    pieceWidget = (mass == BlockMass.filled)
+        ? Draggable(
+          feedback: Container(
+              height: height,
+              width: width,
+              margin: EdgeInsets.all(.5.sp),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(5.r),
+              ),
+            ),
+          child: Container(
+              height: height,
+              width: width,
+              margin: EdgeInsets.all(.5.sp),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(5.r),
+              ),
+            ),
+        )
+        : Container(
+            height: height,
+            width: width,
+            color: Colors.transparent,
+            margin: EdgeInsets.all(.5.sp),
+          );
   }
 
   void moveBlock(Directions direction) {
