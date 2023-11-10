@@ -283,12 +283,12 @@ class _GameScreenState extends State<GameScreen> {
           if (canDrop) {
             // drop the block
             print("Dropping block");
-            int length = rowBlockInts[blockIndex];
+            int length = rowBlockInts[blockIndex]["pieceWidth"];
 
             //replace the remaning parts of the block with zeros
-            rowBlockInts[blockIndex] = 0;
+            rowBlockInts[blockIndex]["pieceWidth"] = 0;
             for (int i = 0; i < length - 1; i++) {
-              rowBlockInts.insert(blockIndex, 0);
+              rowBlockInts.insert(blockIndex, {"pieceWidth": 0, "color": Colors.transparent});
             }
 
             // update the bottom row block ints
@@ -320,7 +320,7 @@ class _GameScreenState extends State<GameScreen> {
     required int rowBlockInt,
     required int bottomBlock,
     required int bottomBlockIndex,
-    required List<int> bottomRowBlockInts,
+    required List<Map<String, dynamic>> bottomRowBlockInts,
   }) {
     // if it's an empty pixel, check if the remaining parts of the block
     // have a clear bottom to land
