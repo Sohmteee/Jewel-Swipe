@@ -64,7 +64,6 @@ class Block {
         (MediaQuery.of(context).size.width - 48.w) / rowLength * pieceWidth +
             pieceWidth -
             1;
-    Color targetColor = Colors.transparent;
 
     pieceWidget = (mass == BlockMass.filled)
         ? Draggable(
@@ -91,6 +90,7 @@ class Block {
             ),
             child: DragTarget(
               builder: (context, candidateItems, rejectedItems) {
+                Color targetColor = Colors.transparent;
                 return Container(
                   height: height,
                   width: width,
@@ -102,7 +102,8 @@ class Block {
                 );
               },
               onAccept: (block) {
-                targetColor = Colors.red;
+                print('onAccept');
+                print(block);
               },
             ),
           )
