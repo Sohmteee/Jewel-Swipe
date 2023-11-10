@@ -110,6 +110,7 @@ class Block {
             onAccept: (data) {
               print('accepted');
             },
+            onMove:,
           );
   }
 
