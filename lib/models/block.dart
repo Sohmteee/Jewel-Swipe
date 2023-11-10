@@ -67,7 +67,8 @@ class Block {
 
     pieceWidget = (mass == BlockMass.filled)
         ? Draggable(
-          maxSimultaneousDrags: ,
+          // data: position,
+          
             axis: Axis.horizontal,
             childWhenDragging: Container(
               height: height,
