@@ -88,6 +88,7 @@ class Block {
                 borderRadius: BorderRadius.circular(5.r),
               ),
             ),
+            
             child: Container(
               height: height,
               width: width,
@@ -110,7 +111,6 @@ class Block {
             onAccept: (data) {
               print('accepted');
             },
-            onMove:,
           );
   }
 
