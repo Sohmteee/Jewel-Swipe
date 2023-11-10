@@ -354,6 +354,7 @@ class _GameScreenState extends State<GameScreen> {
         var rowBlock = Block(
           context,
           pieceWidth: 1,
+          color: Colors.transparent,
           mass: BlockMass.empty,
         );
         rowBlock.initializeBlock();
@@ -364,7 +365,7 @@ class _GameScreenState extends State<GameScreen> {
         var rowBlock = Block(
           context,
           pieceWidth: block["pieceWidth"],
-          
+          color: block["color"],
           mass: BlockMass.filled,
         );
         rowBlock.initializeBlock();
