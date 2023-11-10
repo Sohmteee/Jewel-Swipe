@@ -69,8 +69,7 @@ class Block {
         ? Draggable(
             // data: position,
             affinity: Axis.horizontal,
-            // axis: Axis.horizontal,
-            
+            // axis: Axis.horizontal,,
             childWhenDragging: Container(
               height: height,
               width: width,
