@@ -68,7 +68,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void animateAddBlocks() {
-    .animate().moveY(
+    stackedRowBlocks.animate().moveY(
           begin: 0,
           end: (MediaQuery.of(context).size.width - 48.w) / 8,
           duration: 400.milliseconds,
