@@ -405,11 +405,11 @@ class _GameScreenState extends State<GameScreen> {
       return colors[index];
     }
 
-    List rowNumbers = List.generate(row.length, (index) => null);
+    List rowNumbers = List.generate(row.length, (index) => row[index]["pieceWidth"]);
 
     while (availableSpace > 0) {
       if (availableSpace <= 4) {
-        if (row.contains(0)) {
+        if (rowNumbers.contains(0)) {
           int pieceWidth = Random().nextInt(availableSpace + 1);
           Color color = generateColor();
           row.add({"pieceWidth": pieceWidth, "color": color});
