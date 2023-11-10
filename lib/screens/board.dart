@@ -365,7 +365,7 @@ class _GameScreenState extends State<GameScreen> {
           color: Colors.transparent,
           mass: BlockMass.empty,
         );
-        rowBlock.initializeBlock();
+        rowBlock.initializeBlock(blockColor: Colors.transparent);
         rowBlocks.add(
           rowBlock.pieceWidget!,
         );
@@ -376,7 +376,7 @@ class _GameScreenState extends State<GameScreen> {
           color: block["color"],
           mass: BlockMass.filled,
         );
-        rowBlock.initializeBlock();
+        rowBlock.initializeBlock(blockColor: block["color"]);
         rowBlocks.add(
           rowBlock.pieceWidget!,
         );
@@ -428,7 +428,6 @@ class _GameScreenState extends State<GameScreen> {
         rowNumbers.add(pieceWidth);
         availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
       }
-
     }
 
     // print("Row: $row");
