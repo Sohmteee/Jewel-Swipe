@@ -376,8 +376,8 @@ class _GameScreenState extends State<GameScreen> {
     return Row(children: rowBlocks);
   }
 
-  List<int> generateRowInts() {
-    List<int> row = [];
+  List<Map<String, dynamic>> generateRowInts() {
+    List<Map<String, dynamic>> row = [];
     int availableSpace = 8;
 
       final List<Color> colors = [
