@@ -405,6 +405,8 @@ class _GameScreenState extends State<GameScreen> {
       return colors[index];
     }
 
+    List rowNumbers = List.generate(row.length, (index) => null);
+
     while (availableSpace > 0) {
       if (availableSpace <= 4) {
         if (row.contains(0)) {
