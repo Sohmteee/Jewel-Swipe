@@ -43,7 +43,7 @@ class _BlockWidgetState extends State<BlockWidget> {
             widget.blockWidth +
         widget.blockWidth -
         1;
-    double horizontalOffset = 10.w;
+    double horizontalOffset = 50;
 
     if (widget.mass == BlockMass.filled) {
       return Container(
