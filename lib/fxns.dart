@@ -94,3 +94,5 @@ Row buildBlockRow(BuildContext context, {required int stackIndex,
 
   return Row(children: rowBlocks);
 }
+
+

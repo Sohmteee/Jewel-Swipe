@@ -197,8 +197,11 @@ class _GameScreenState extends State<GameScreen> {
                                 print(stackedRowBlockInts);
 
                                 nextRowBlockInts = generateRowInts();
-                                nextRowBlock =
-                                    buildBlockRow(-1, nextRowBlockInts);
+                                nextRowBlock = buildBlockRow(
+                                  context,
+                                  stackIndex: -1,
+                                  rowBlockInts: nextRowBlockInts,
+                                );
 
                                 if (stackedRowBlockInts.length > 1) {
                                   activateGravity();
@@ -329,8 +332,13 @@ class _GameScreenState extends State<GameScreen> {
       setState(() {
         stackedRowBlocks = [];
         for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockInts) {
-          stackedRowBlocks
-              .add(buildBlockRow(context, stackIndex: stackedRowBlocks.length, rowBlockInts));
+          stackedRowBlocks.add(
+            buildBlockRow(
+              context,
+              stackIndex: stackedRowBlocks.length,
+              rowBlockInts: rowBlockInts,
+            ),
+          );
         }
 
         // check if a row is complete
