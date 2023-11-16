@@ -181,7 +181,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     print(left);
 
-                    // highlight position on pixels
+                    /* // highlight position on pixels
                     int boardPosition = 0;
                     List dropPosition = [];
 
@@ -205,7 +205,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                           );
                         });
                       }
-                    }
+                    } */
 
                     if (position.dx > 0) {
                       if (position.dx < rightSpace) {
