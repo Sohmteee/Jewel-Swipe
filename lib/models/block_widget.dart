@@ -243,6 +243,8 @@ class _BlockWidgetState extends State<BlockWidget> {
                             })
                         .toList();
 
+                    stackedRowBlocksWidget = Column(children: stackedRowBlocks);
+
                     /* if (stackedRowBlockInts.length < 12) {
                       setState(() {
                         currentRowBlockInts = nextRowBlockInts;
