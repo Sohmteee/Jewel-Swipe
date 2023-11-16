@@ -232,6 +232,8 @@ class _BlockWidgetState extends State<BlockWidget> {
                     int shift = (left! / height).round();
                     print(shift);
 
+                    left = shift * height;
+
                     widget.rowBlockInts.removeAt(widget.rowIndex);
                     widget.rowBlockInts.insert(widget.rowIndex + shift, {
                       "blockWidth": widget.blockWidth,
@@ -252,6 +254,8 @@ class _BlockWidgetState extends State<BlockWidget> {
                         ),
                       );
                     }
+
+                    left = null;
 
                     stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
@@ -276,9 +280,6 @@ class _BlockWidgetState extends State<BlockWidget> {
                         }
                       });
                     } */
-
-                    left = shift * height;
-                    
                   });
                 },
                 child: Container(
