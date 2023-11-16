@@ -226,8 +226,8 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     if ((left ?? 0) > 0) {
                       print("Left: $left");
-                      print("Width: $width");
-                      int shift = (left! / width).round();
+                      print("Width: ${height / }");
+                      int shift = (left! / height).round();
                       print(shift);
                     }
 
