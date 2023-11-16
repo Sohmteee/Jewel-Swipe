@@ -238,12 +238,8 @@ class _BlockWidgetState extends State<BlockWidget> {
                       "color": widget.color,
                     });
 
-                    stackedRowBlockInts[widget.stackIndex] = widget.rowBlockInts
-                        .map((rowInt) => {
-                              "blockWidth": rowInt,
-                              "color": widget.color,
-                            })
-                        .toList();
+                    stackedRowBlockInts[widget.stackIndex] =
+                        widget.rowBlockInts;
 
                     stackedRowBlocks = [];
                     for (List<Map<String, dynamic>> rowBlockInts
