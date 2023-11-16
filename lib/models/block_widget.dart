@@ -37,6 +37,20 @@ class BlockWidget extends StatefulWidget {
 class _BlockWidgetState extends State<BlockWidget> {
   double? left;
 
+      void animateAddBlocks() {
+    /* stackedRowBlocks.animate().moveY(
+          begin: 0,
+          end: (MediaQuery.of(context).size.blockWidth - 48.w) / rowLength,
+          duration: 400.milliseconds,
+          curve: Curves.easeIn,
+        ); */
+    Future.delayed(0.milliseconds, () {
+      setState(() {
+        stackedRowBlocks.add(currentRowBlock);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
@@ -45,6 +59,7 @@ class _BlockWidgetState extends State<BlockWidget> {
             widget.blockWidth +
         widget.blockWidth -
         1;
+
 
           startGame() {
       // currentBlock.initializeBlock();
