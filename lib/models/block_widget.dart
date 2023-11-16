@@ -188,8 +188,10 @@ class _BlockWidgetState extends State<BlockWidget> {
                       boardPosition +=
                           widget.rowInts[i] == 0 ? 1 : widget.rowInts[i];
                     }
+for ()
+                    dropPosition.add(boardPosition);
 
-                    dropPosition.add(value)
+                    print(dropPosition);
 
                     if (position.dx > 0) {
                       if (position.dx < rightSpace) {
