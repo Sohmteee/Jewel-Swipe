@@ -226,7 +226,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                     // left = null;
 
                     if ((left ?? 0) > 0) {
-                      int 
+                      int shift = (left! / width).round();
                     }
                   });
                 },
