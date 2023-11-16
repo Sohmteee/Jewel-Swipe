@@ -223,7 +223,11 @@ class _BlockWidgetState extends State<BlockWidget> {
                 onPanEnd: (details) {
                   setState(() {
                     widget.isBeingDragged = false;
-                    left = null;
+                    // left = null;
+
+                    if ((left ?? 0) > 0) {
+                      
+                    }
                   });
                 },
                 child: Container(
