@@ -10,7 +10,7 @@ class BlockWidget extends StatefulWidget {
     super.key,
     required this.rowIndex,
     required this.stackIndex,
-    required this.rowInts,
+    required this.rowBlockInts,
     required this.blockWidth,
     this.color,
     this.height,
@@ -21,7 +21,7 @@ class BlockWidget extends StatefulWidget {
 
   int rowIndex;
   int stackIndex;
-  List<int> rowInts;
+ List<Map<String, dynamic>> rowBlockInts;
   int blockWidth;
   Color? color;
   double? height;
@@ -82,7 +82,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                   } else {
                     int count = 0;
                     for (int i = leftBlocks - 1; i >= 0; i--) {
-                      if (widget.rowInts[i] == 0) {
+                      if (widget.rowBlockInts[i]["blockWidth"] == 0) {
                         leftSpace +=
                             (MediaQuery.of(context).size.width - 48.w) /
                                 rowLength;

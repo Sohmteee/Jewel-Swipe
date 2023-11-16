@@ -18,7 +18,7 @@ class Block {
   BuildContext context;
   int rowIndex;
   int stackIndex;
-  List<int> rowInts;
+  List<Map<String, dynamic>> rowBlockInts;
   int blockWidth;
   // List<int> position = [];
   Color? color;
@@ -49,11 +49,10 @@ class Block {
   } */
 
   void buildBlock() {
-
-   blockWidget = BlockWidget(
+    blockWidget = BlockWidget(
       rowIndex: rowIndex,
       stackIndex: stackIndex,
-      rowInts: rowInts,
+      rowBlockInts: rowBlockInts,
       height: height,
       blockWidth: blockWidth,
       color: color,
