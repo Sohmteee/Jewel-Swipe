@@ -116,7 +116,7 @@ class _GameScreenState extends State<GameScreen> {
       return false; // The piece is not over any pixel
     } */
 
-    Column buildStackedRowBlocks(List<Row> stackedRowBlocks) {
+    stackedRowBlocksWidget =  Column buildStackedRowBlocks(List<Row> stackedRowBlocks) {
       return Column(children: stackedRowBlocks);
     }
 
