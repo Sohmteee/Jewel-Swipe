@@ -510,25 +510,23 @@ class _BlockWidgetState extends State<BlockWidget> {
                     stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
                     if (stackedRowBlockInts.length < 12) {
-                      setState(() {
-                        currentRowBlockInts = nextRowBlockInts;
-                        currentRowBlock = nextRowBlock;
+                      currentRowBlockInts = nextRowBlockInts;
+                      currentRowBlock = nextRowBlock;
 
-                        stackedRowBlockInts.add(currentRowBlockInts);
-                        animateAddBlocks();
-                        print(stackedRowBlockInts);
+                      stackedRowBlockInts.add(currentRowBlockInts);
+                      animateAddBlocks();
+                      print(stackedRowBlockInts);
 
-                        nextRowBlockInts = generateRowInts();
-                        nextRowBlock = buildBlockRow(
-                          context,
-                          stackIndex: -1,
-                          rowBlockInts: nextRowBlockInts,
-                        );
+                      nextRowBlockInts = generateRowInts();
+                      nextRowBlock = buildBlockRow(
+                        context,
+                        stackIndex: -1,
+                        rowBlockInts: nextRowBlockInts,
+                      );
 
-                        if (stackedRowBlockInts.length > 1) {
-                          activateGravity();
-                        }
-                      });
+                      if (stackedRowBlockInts.length > 1) {
+                        activateGravity();
+                      }
                     }
                   });
 
