@@ -193,8 +193,8 @@ class _BlockWidgetState extends State<BlockWidget> {
                       return boardPosition + index;
                     });
 
-                    for (int i = 0; i < stackedRowBlockInts.length; i++) {
-                      rowBlockInts = ;
+                    for (int i = widget.stackIndex; i >= 0; i--) {
+                      
                     }
 
                     if (position.dx > 0) {
