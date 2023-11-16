@@ -39,10 +39,10 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       currentRowBlockInts = generateRowInts();
       currentRowBlock =
-          buildBlockRow(stackedRowBlocks.length, currentRowBlockInts);
+          buildBlockRow(context, stackIndex: stackedRowBlocks.length, rowBlockInts: currentRowBlockInts);
 
       nextRowBlockInts = generateRowInts();
-      nextRowBlock = buildBlockRow(-1, nextRowBlockInts);
+      nextRowBlock = buildBlockRow(context, stackIndex: -1, nextRowBlockInts);
 
       stackedRowBlockInts = [];
       stackedRowBlocks = [];
@@ -61,6 +61,20 @@ class _GameScreenState extends State<GameScreen> {
         currentBlock.moveBlock(Directions.down);
       });
     }); */
+  }
+
+  void animateAddBlocks() {
+    /* stackedRowBlocks.animate().moveY(
+          begin: 0,
+          end: (MediaQuery.of(context).size.blockWidth - 48.w) / rowLength,
+          duration: 400.milliseconds,
+          curve: Curves.easeIn,
+        ); */
+    Future.delayed(0.milliseconds, () {
+      setState(() {
+        stackedRowBlocks.add(currentRowBlock);
+      });
+    });
   }
 
   @override
