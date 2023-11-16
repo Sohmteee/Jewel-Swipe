@@ -153,7 +153,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                       for (int i = widget.rowIndex + 1;
                           i <= widget.rowBlockInts.length - 1;
                           i++) {
-                        if (widget.rowBlockInts[i] == 0) {
+                        if (widget.rowBlockInts[i]["blockWidth"] == 0) {
                           rightSpace +=
                               (MediaQuery.of(context).size.width - 48.w) /
                                   rowLength;
