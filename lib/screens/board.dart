@@ -38,11 +38,18 @@ class _GameScreenState extends State<GameScreen> {
 
     setState(() {
       currentRowBlockInts = generateRowInts();
-      currentRowBlock =
-          buildBlockRow(context, stackIndex: stackedRowBlocks.length, rowBlockInts: currentRowBlockInts,);
+      currentRowBlock = buildBlockRow(
+        context,
+        stackIndex: stackedRowBlocks.length,
+        rowBlockInts: currentRowBlockInts,
+      );
 
       nextRowBlockInts = generateRowInts();
-      nextRowBlock = buildBlockRow(context, stackIndex: -1, rowBlockInts: nextRowBlockInts,);
+      nextRowBlock = buildBlockRow(
+        context,
+        stackIndex: -1,
+        rowBlockInts: nextRowBlockInts,
+      );
 
       stackedRowBlockInts = [];
       stackedRowBlocks = [];
@@ -116,9 +123,7 @@ class _GameScreenState extends State<GameScreen> {
       return false; // The piece is not over any pixel
     } */
 
-    stackedRowBlocksWidget =  Column buildStackedRowBlocks(List<Row> stackedRowBlocks) {
-      return Column(children: stackedRowBlocks);
-    }
+    stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
     return Scaffold(
       backgroundColor: Colors.deepPurple,
@@ -141,7 +146,7 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     ),
                   ),
-                  buildStackedRowBlocks(stackedRowBlocks)
+                  stackedRowBlocksWidget,
                 ],
               ),
               SizedBox(height: 5.h),
