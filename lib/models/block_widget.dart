@@ -37,7 +37,7 @@ class BlockWidget extends StatefulWidget {
 class _BlockWidgetState extends State<BlockWidget> {
   double? left;
 
-      void animateAddBlocks() {
+  void animateAddBlocks() {
     /* stackedRowBlocks.animate().moveY(
           begin: 0,
           end: (MediaQuery.of(context).size.blockWidth - 48.w) / rowLength,
@@ -60,8 +60,15 @@ class _BlockWidgetState extends State<BlockWidget> {
         widget.blockWidth -
         1;
 
+    gameLoop(Duration frameRate) {
+      /* Timer.periodic(frameRate, (timer) {
+      setState(() {
+        currentBlock.moveBlock(Directions.down);
+      });
+    }); */
+    }
 
-          startGame() {
+    startGame() {
       // currentBlock.initializeBlock();
       // currentBlock.rotate(currentBlock);
 
