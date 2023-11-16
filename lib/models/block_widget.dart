@@ -231,7 +231,8 @@ class _BlockWidgetState extends State<BlockWidget> {
                     int shift = (left! / height).round();
                     print(shift);
 
-                    widget.rowInts.re
+                    widget.rowInts.removeAt(widget.rowIndex);
+                    widget.rowInts.insert(index, element)
 
                     left = null;
                   });
