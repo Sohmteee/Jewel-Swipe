@@ -63,8 +63,6 @@ class _GameScreenState extends State<GameScreen> {
     }); */
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     // currentBlock.rotate();
@@ -332,7 +330,7 @@ class _GameScreenState extends State<GameScreen> {
         stackedRowBlocks = [];
         for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockInts) {
           stackedRowBlocks
-              .add(buildBlockRow(stackedRowBlocks.length, rowBlockInts));
+              .add(buildBlockRow(context, stackIndex: stackedRowBlocks.length, rowBlockInts));
         }
 
         // check if a row is complete
@@ -371,7 +369,11 @@ class _GameScreenState extends State<GameScreen> {
                     print(stackedRowBlockInts);
 
                     nextRowBlockInts = generateRowInts();
-                    nextRowBlock = buildBlockRow(-1, nextRowBlockInts);
+                    nextRowBlock = buildBlockRow(
+                      context,
+                      stackIndex: -1,
+                      rowBlockInts: nextRowBlockInts,
+                    );
 
                     if (stackedRowBlockInts.length > 1) {
                       activateGravity();
@@ -417,8 +419,4 @@ class _GameScreenState extends State<GameScreen> {
     print("Can't drop");
     return false;
   }
-
-  
-
-  
 }
