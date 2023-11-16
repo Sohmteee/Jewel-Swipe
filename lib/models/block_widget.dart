@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jewel_swipe/models/pixel.dart';
 import 'package:jewel_swipe/variables.dart';
 
 class BlockWidget extends StatefulWidget {
@@ -194,10 +195,13 @@ class _BlockWidgetState extends State<BlockWidget> {
                     });
 
                     for (int i = widget.stackIndex; i >= 0; i--) {
-                      var pixelRow = pixelArray[i];
+                      List<Pixel> pixelRow = pixelArray[i];
 
-                      for (int i = dropPosition[0]; i <= dropPosition[dropPosition.length - 1]; i++) {
-                        
+                      for (int i = dropPosition[0];
+                          i <= dropPosition[dropPosition.length - 1];
+                          i++) {
+                        pixelRow[i];
+
 
                       }
                     }
