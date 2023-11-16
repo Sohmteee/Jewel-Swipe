@@ -7,7 +7,7 @@ class Block {
     this.context, {
     required this.rowIndex,
     required this.stackIndex,
-    required this.rowInts,
+    required this.rowBlockInts,
     required this.blockWidth,
     this.color,
     this.height,
