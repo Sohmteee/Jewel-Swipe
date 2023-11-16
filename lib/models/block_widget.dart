@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jewel_swipe/fxns.dart';
 import 'package:jewel_swipe/variables.dart';
@@ -45,7 +46,37 @@ class _BlockWidgetState extends State<BlockWidget> {
         widget.blockWidth -
         1;
 
-        void activateGravity() {
+    bool checkCanDrop({
+      required int rowBlockInt,
+      required int bottomBlock,
+      required int bottomBlockIndex,
+      required List<Map<String, dynamic>> bottomRowBlockInts,
+    }) {
+      // if it's an empty pixel, check if the remaining parts of the block
+      // have a clear bottom to land
+      // we can do this by checking how many zeros recurred after the current
+      // 0 in the bottom row
+      int count = 1;
+
+      while (bottomBlockIndex + count < bottomRowBlockInts.length &&
+          bottomRowBlockInts[bottomBlockIndex + count]["blockWidth"] == 0) {
+        int index = bottomBlockIndex + count;
+        if (bottomRowBlockInts[index]["blockWidth"] == 0) {
+          count += 1;
+        } else {
+          break;
+        }
+      }
+
+      if (count >= rowBlockInt) {
+        print("Can drop");
+        return true;
+      }
+      print("Can't drop");
+      return false;
+    }
+
+    void activateGravity() {
       // loop through the stack from the bottom
       for (int rowBlockIndex = stackedRowBlockInts.length - 2;
           rowBlockIndex >= 0;
@@ -213,7 +244,6 @@ class _BlockWidgetState extends State<BlockWidget> {
         });
       });
     }
-
 
     if (widget.mass == BlockMass.filled) {
       return Container(
@@ -474,8 +504,5 @@ class _BlockWidgetState extends State<BlockWidget> {
         margin: EdgeInsets.all(.25.sp),
       );
     }
-
-    
   }
 }
-
