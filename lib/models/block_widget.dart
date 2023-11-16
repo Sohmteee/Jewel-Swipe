@@ -182,7 +182,9 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     // highlight position on pixels
 
-                    List position = [];
+                    for (int i = 0; i < count; i++) {
+                      
+                    }
 
                     if (position.dx > 0) {
                       if (position.dx < rightSpace) {
