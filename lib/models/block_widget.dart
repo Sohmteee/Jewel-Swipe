@@ -180,20 +180,9 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     print(left);
 
-                    /* if (left! > 0) {
-                            if (leftSpace > left!) {
-                              leftSpace -= left!;
-                            } else {
-                              leftSpace = 0;
-                            }
-                          } else {
-                            if (rightSpace > left!.abs()) {
-                              rightSpace -= left!.abs();
-                            } else {
-                              rightSpace = 0;
-                            }
-                          }
-             */
+                    // highlight position on pixels
+
+                    
                   });
                 },
                 onPanEnd: (details) {
