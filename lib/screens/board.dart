@@ -133,20 +133,7 @@ class _GameScreenState extends State<GameScreen> {
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  Column(
-                    children: List.generate(
-                      columnLength,
-                      (columnIndex) => Row(
-                        children: List.generate(
-                          rowLength,
-                          (rowIndex) => Pixel(
-                            color: Colors.grey[900]!.withOpacity(.2),
-                            // child: ("$columnIndex, $rowIndex"),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  pixelsWidget,
                   buildStackedRowBlocks(stackedRowBlocks)
                 ],
               ),
@@ -156,9 +143,10 @@ class _GameScreenState extends State<GameScreen> {
                   alignment: Alignment.center,
                   children: [
                     SizedBox(
-                height: 7.h,
-                width: double.maxFinite,child:
-                    nextRowBlock,),
+                      height: 7.h,
+                      width: double.maxFinite,
+                      child: nextRowBlock,
+                    ),
                     Container(
                       height: 7.h,
                       width: double.maxFinite,
