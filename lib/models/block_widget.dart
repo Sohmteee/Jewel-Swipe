@@ -196,13 +196,10 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     for (int i = widget.stackIndex; i >= 0; i--) {
                       List<Pixel> pixelRow = pixelArray[i];
-
-                      for (int i = dropPosition[0];
-                          i <= dropPosition[dropPosition.length - 1];
-                          i++) {
-
-                            pixel
-                        pixelRow[i] = Pixel(
+                      for (int j = dropPosition[0];
+                          j <= dropPosition[dropPosition.length - 1];
+                          j++) {
+                        pixelArray[i][j] = Pixel(
                           color: Colors.white.withOpacity(.5),
                           // child: ("$columnIndex, $rowIndex"),
                         );
