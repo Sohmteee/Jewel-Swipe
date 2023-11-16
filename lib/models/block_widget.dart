@@ -68,11 +68,11 @@ class _BlockWidgetState extends State<BlockWidget> {
               child: GestureDetector(
                 onTap: () {
                   // int leftBlocks = widget.rowIndex;
-                  // int rightBlocks = widget.rowInts.length - widget.rowIndex - 1;
+                  // int rightBlocks = widget.rowBlockInts.length - widget.rowIndex - 1;
 
                   widget.isBeingDragged = true;
                   int leftBlocks = widget.rowIndex;
-                  // int rightBlocks = widget.rowInts.length - widget.rowIndex - 1;
+                  // int rightBlocks = widget.rowBlockInts.length - widget.rowIndex - 1;
 
                   double leftSpace = 0, rightSpace = 0;
 
@@ -94,14 +94,14 @@ class _BlockWidgetState extends State<BlockWidget> {
                     leftSpace += count - 1 < 0 ? 0 : count - 1;
                   }
 
-                  if (widget.rowIndex == widget.rowInts.length - 1) {
+                  if (widget.rowIndex == widget.rowBlockInts.length - 1) {
                     rightSpace = 0;
                   } else {
                     int count = 0;
                     for (int i = widget.rowIndex + 1;
-                        i <= widget.rowInts.length - 1;
+                        i <= widget.rowBlockInts.length - 1;
                         i++) {
-                      if (widget.rowInts[i] == 0) {
+                      if (widget.rowBlockInts[i]["blockWidth"] == 0) {
                         rightSpace +=
                             (MediaQuery.of(context).size.width - 48.w) /
                                 rowLength;
@@ -121,7 +121,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                     widget.isBeingDragged = true;
                     int leftBlocks = widget.rowIndex;
                     // int rightBlocks =
-                    //     widget.rowInts.length - widget.rowIndex - 1;
+                    //     widget.rowBlockInts.length - widget.rowIndex - 1;
 
                     final box = context.findRenderObject() as RenderBox;
                     final position = box.globalToLocal(details.globalPosition);
@@ -134,7 +134,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                     } else {
                       int count = 0;
                       for (int i = leftBlocks - 1; i >= 0; i--) {
-                        if (widget.rowInts[i] == 0) {
+                        if (widget.rowBlockInts[i]["blockWidth"] == 0) {
                           leftSpace +=
                               (MediaQuery.of(context).size.width - 48.w) /
                                   rowLength;
@@ -146,14 +146,14 @@ class _BlockWidgetState extends State<BlockWidget> {
                       }
                     }
 
-                    if (widget.rowIndex == widget.rowInts.length - 1) {
+                    if (widget.rowIndex == widget.rowBlockInts.length - 1) {
                       rightSpace = 0;
                     } else {
                       int count = 0;
                       for (int i = widget.rowIndex + 1;
-                          i <= widget.rowInts.length - 1;
+                          i <= widget.rowBlockInts.length - 1;
                           i++) {
-                        if (widget.rowInts[i] == 0) {
+                        if (widget.rowBlockInts[i] == 0) {
                           rightSpace +=
                               (MediaQuery.of(context).size.width - 48.w) /
                                   rowLength;
@@ -187,7 +187,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     for (int i = 0; i < widget.rowIndex; i++) {
                       boardPosition +=
-                          widget.rowInts[i] == 0 ? 1 : widget.rowInts[i];
+                          widget.rowBlockInts[i] == 0 ? 1 : widget.rowBlockInts[i];
                     }
 
                     dropPosition = List.generate(widget.blockWidth, (index) {
@@ -232,11 +232,11 @@ class _BlockWidgetState extends State<BlockWidget> {
                     int shift = (left! / height).round();
                     print(shift);
 
-                    widget.rowInts.removeAt(widget.rowIndex);
-                    widget.rowInts
-                        .insert(widget.rowIndex + shift, widget.blockWidth);
+                    widget.rowBlockInts.removeAt(widget.rowIndex);
+                    widget.rowBlockInts
+                        .insert(widget.rowIndex + shift, {"widget.blockWidth});
 
-                    stackedRowBlockInts[widget.stackIndex] = widget.rowInts
+                    stackedRowBlockInts[widget.stackIndex] = widget.rowBlockInts
                         .map((rowInt) => {
                               "blockWidth": rowInt,
                               "color": widget.color,
