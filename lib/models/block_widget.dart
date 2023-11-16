@@ -237,7 +237,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                         .insert(widget.rowIndex + shift, widget.blockWidth);
 
                     stackedRowBlockInts[widget.stackIndex] =
-                        widget.rowInts.map((rowInt) => {""});
+                        widget.rowInts.map((rowInt) => {"": 1}).toList();
 
                     /* if (stackedRowBlockInts.length < 12) {
                       setState(() {
