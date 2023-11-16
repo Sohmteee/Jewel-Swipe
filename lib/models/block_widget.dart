@@ -236,8 +236,14 @@ class _BlockWidgetState extends State<BlockWidget> {
                     widget.rowInts
                         .insert(widget.rowIndex + shift, widget.blockWidth);
 
-                    stackedRowBlockInts[widget.stackIndex] =
-                        widget.rowInts.map((rowInt) => {"": 1}).toList();
+                    stackedRowBlockInts[widget.stackIndex] = widget.rowInts
+                        .map((rowInt) => {
+                              "blockWidth": widget.blockWidth,
+                              "color": widget.color,
+                            })
+                        .toList();
+
+                        buildBlockRow(context, stackIndex: stackIndex, rowBlockInts: rowBlockInts)
 
                     /* if (stackedRowBlockInts.length < 12) {
                       setState(() {
