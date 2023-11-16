@@ -3,18 +3,13 @@ import 'package:jewel_swipe/models/pixel.dart';
 
 List<Row> stackedRowBlocks = [];
 List<List<Map<String, dynamic>>> stackedRowBlockInts = [];
-List<List<Pixel>> pixelArray = 
-Column pixelsWidget = Column(
-  children: List.generate(
-    columnLength,
-    (columnIndex) => Row(
-      children: List.generate(
-        rowLength,
-        (rowIndex) => Pixel(
-          color: Colors.grey[900]!.withOpacity(.2),
-          // child: ("$columnIndex, $rowIndex"),
-        ),
-      ),
+List<List<Pixel>> pixelArray = List.generate(
+  columnLength,
+  (columnIndex) => List.generate(
+    rowLength,
+    (rowIndex) => Pixel(
+      color: Colors.grey[900]!.withOpacity(.2),
+      // child: ("$columnIndex, $rowIndex"),
     ),
   ),
 );
