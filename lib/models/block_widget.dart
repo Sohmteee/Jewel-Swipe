@@ -182,7 +182,21 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     // highlight position on pixels
 
-                    
+                    List position = [];
+
+                    if (position.dx > 0) {
+                      if (position.dx < rightSpace) {
+                        
+                      } else {
+                        left = rightSpace;
+                      }
+                    } else {
+                      if (position.dx.abs() < leftSpace) {
+                        left = position.dx;
+                      } else {
+                        left = -leftSpace;
+                      }
+                    }
                   });
                 },
                 onPanEnd: (details) {
