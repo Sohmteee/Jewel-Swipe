@@ -15,8 +15,6 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   // late Block currentBlock;
-  Row currentRowBlock = const Row(), nextRowBlock = const Row();
-  List<Map<String, dynamic>> currentRowBlockInts = [], nextRowBlockInts = [];
   double? x, y;
 
   @override

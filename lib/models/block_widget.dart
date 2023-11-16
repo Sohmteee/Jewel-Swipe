@@ -235,7 +235,23 @@ class _BlockWidgetState extends State<BlockWidget> {
                     widget.rowInts
                         .insert(widget.rowIndex + shift, widget.blockWidth);
 
-                    print(widget.rowInts);
+                    if (stackedRowBlockInts.length < 12) {
+                      setState(() {
+                        currentRowBlockInts = nextRowBlockInts;
+                        currentRowBlock = nextRowBlock;
+
+                        stackedRowBlockInts.add(currentRowBlockInts);
+                        animateAddBlocks();
+                        print(stackedRowBlockInts);
+
+                        nextRowBlockInts = generateRowInts();
+                        nextRowBlock = buildBlockRow(-1, nextRowBlockInts);
+
+                        if (stackedRowBlockInts.length > 1) {
+                          activateGravity();
+                        }
+                      });
+                    }
 
                     left = null;
                   });
