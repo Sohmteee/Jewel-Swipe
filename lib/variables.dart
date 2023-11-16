@@ -16,7 +16,7 @@ List<List<Pixel>> pixelArray = List.generate(
   ),
 );
 
- Column stackedRowBlocksWidget = 
+late Column stackedRowBlocksWidget;
 
 int rowLength = 8;
 int columnLength = 12;
