@@ -62,19 +62,7 @@ class _GameScreenState extends State<GameScreen> {
     }); */
   }
 
-  void animateAddBlocks() {
-    /* stackedRowBlocks.animate().moveY(
-          begin: 0,
-          end: (MediaQuery.of(context).size.blockWidth - 48.w) / rowLength,
-          duration: 400.milliseconds,
-          curve: Curves.easeIn,
-        ); */
-    Future.delayed(0.milliseconds, () {
-      setState(() {
-        stackedRowBlocks.add(currentRowBlock);
-      });
-    });
-  }
+  
 
   @override
   Widget build(BuildContext context) {
