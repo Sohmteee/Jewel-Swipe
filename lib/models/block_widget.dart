@@ -196,8 +196,9 @@ class _BlockWidgetState extends State<BlockWidget> {
                     for (int i = widget.stackIndex; i >= 0; i--) {
                       var pixelRow = pixelArray[i];
 
-                      for (int i = widget.stackIndex; i >= 0; i--) {
+                      for (int i = dropPosition[0]; i <= dropPosition[dropPosition.length - 1]; i++) {
                         
+
                       }
                     }
 
