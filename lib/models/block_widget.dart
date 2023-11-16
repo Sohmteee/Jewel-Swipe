@@ -231,6 +231,8 @@ class _BlockWidgetState extends State<BlockWidget> {
                     int shift = (left! / height).round();
                     print(shift);
 
+                    
+
                     left = null;
                   });
                 },
