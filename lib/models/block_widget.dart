@@ -167,13 +167,13 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     if (position.dx > 0) {
                       if (position.dx < rightSpace) {
-                        left = position.dx + offset;
+                        left = position.dx - horizontalOffset;
                       } else {
                         left = rightSpace;
                       }
                     } else {
                       if (position.dx.abs() < leftSpace) {
-                        left = position.dx;
+                        left = position.dx - horizontalOffset;
                       } else {
                         left = -leftSpace;
                       }
