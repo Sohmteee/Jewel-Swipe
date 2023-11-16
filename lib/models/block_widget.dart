@@ -181,10 +181,10 @@ class _BlockWidgetState extends State<BlockWidget> {
                     print(left);
 
                     // highlight position on pixels
-
+                    int boardPosition = 0;
                     List dropPosition = [];
 
-                    for (int i = 0; i < count; i++) {}
+                    for (int i = 0; i < index; i++) {}
 
                     if (position.dx > 0) {
                       if (position.dx < rightSpace) {
