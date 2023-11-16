@@ -509,7 +509,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
-                    /* if (stackedRowBlockInts.length < 12) {
+                    if (stackedRowBlockInts.length < 12) {
                       setState(() {
                         currentRowBlockInts = nextRowBlockInts;
                         currentRowBlock = nextRowBlock;
@@ -529,7 +529,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                           activateGravity();
                         }
                       });
-                    } */
+                    }
                   });
 
                   // left = null;
