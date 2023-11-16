@@ -194,7 +194,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                     });
 
                     for (int i = 0; i < stackedRowBlockInts.length; i++) {
-                      rowBlockInts = 
+                      rowBlockInts = ;
                     }
 
                     if (position.dx > 0) {
