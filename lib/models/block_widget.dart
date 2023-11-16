@@ -194,7 +194,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                     });
 
                     for (int i = widget.stackIndex; i >= 0; i--) {
-                      var 
+                      var wgdt = pixelsWidget.;
                     }
 
                     if (position.dx > 0) {
