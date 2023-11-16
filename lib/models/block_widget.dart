@@ -243,6 +243,18 @@ class _BlockWidgetState extends State<BlockWidget> {
                             })
                         .toList();
 
+                    stackedRowBlocks = [];
+                    for (List<Map<String, dynamic>> rowBlockInts
+                        in stackedRowBlockInts) {
+                      stackedRowBlocks.add(
+                        buildBlockRow(
+                          context,
+                          stackIndex: stackedRowBlocks.length,
+                          rowBlockInts: rowBlockInts,
+                        ),
+                      );
+                    }
+
                     stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
                     /* if (stackedRowBlockInts.length < 12) {
