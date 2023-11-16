@@ -232,7 +232,10 @@ class _BlockWidgetState extends State<BlockWidget> {
                     print(shift);
 
                     widget.rowInts.removeAt(widget.rowIndex);
-                    widget.rowInts.insert(index, element)
+                    widget.rowInts
+                        .insert(widget.rowIndex + shift, widget.blockWidth);
+
+                    print(widget.rowInts);
 
                     left = null;
                   });
