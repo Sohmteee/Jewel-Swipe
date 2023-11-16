@@ -134,7 +134,9 @@ class _GameScreenState extends State<GameScreen> {
                 alignment: Alignment.bottomCenter,
                 children: [
                   Column(
-                    children: List.generate(pixelArray.length, (index) => pixelArray[]),
+                    children: List.generate(pixelArray.length, (index) {
+                      Row(children:  List.generate(pixelArray[index].length, (index) => pixelArray[index][index]),);
+                    }),
                   ),
                   buildStackedRowBlocks(stackedRowBlocks)
                 ],
