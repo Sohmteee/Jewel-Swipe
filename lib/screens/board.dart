@@ -134,9 +134,15 @@ class _GameScreenState extends State<GameScreen> {
                 alignment: Alignment.bottomCenter,
                 children: [
                   Column(
-                    children: List.generate(pixelArray.length, (index) {
-                      Row(children:  List.generate(pixelArray[index].length, (index) => pixelArray[index][index]),);
-                    }),
+                    children: List.generate(
+                      pixelArray.length,
+                      (index) => Row(
+                          children: List.generate(
+                            pixelArray[index].length,
+                            (index) => pixelArray[index][index],
+                          ),
+                        ),
+                    ),
                   ),
                   buildStackedRowBlocks(stackedRowBlocks)
                 ],
@@ -147,9 +153,10 @@ class _GameScreenState extends State<GameScreen> {
                   alignment: Alignment.center,
                   children: [
                     SizedBox(
-                height: 7.h,
-                width: double.maxFinite,child:
-                    nextRowBlock,),
+                      height: 7.h,
+                      width: double.maxFinite,
+                      child: nextRowBlock,
+                    ),
                     Container(
                       height: 7.h,
                       width: double.maxFinite,
