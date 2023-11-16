@@ -21,7 +21,7 @@ class BlockWidget extends StatefulWidget {
 
   int rowIndex;
   int stackIndex;
- List<Map<String, dynamic>> rowBlockInts;
+  List<Map<String, dynamic>> rowBlockInts;
   int blockWidth;
   Color? color;
   double? height;
@@ -233,8 +233,10 @@ class _BlockWidgetState extends State<BlockWidget> {
                     print(shift);
 
                     widget.rowBlockInts.removeAt(widget.rowIndex);
-                    widget.rowBlockInts
-                        .insert(widget.rowIndex + shift, {"widget.blockWidth});
+                    widget.rowBlockInts.insert(widget.rowIndex + shift, {
+                      "blockWidth": widget.blockWidth,
+                      "color": widget.color,
+                    });
 
                     stackedRowBlockInts[widget.stackIndex] = widget.rowBlockInts
                         .map((rowInt) => {
