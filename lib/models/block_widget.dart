@@ -278,6 +278,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                     } */
 
                     left = shift * height;
+                    
                   });
                 },
                 child: Container(
