@@ -191,6 +191,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     dropPosition = List.generate(widget.blockWidth, (index) {
                       boardPosition + index;
+                      print(boardPosition + index);
                     });
 
                     print(dropPosition);
