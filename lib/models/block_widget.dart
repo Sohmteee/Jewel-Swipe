@@ -46,6 +46,36 @@ class _BlockWidgetState extends State<BlockWidget> {
         widget.blockWidth -
         1;
 
+          startGame() {
+      // currentBlock.initializeBlock();
+      // currentBlock.rotate(currentBlock);
+
+      setState(() {
+        currentRowBlockInts = generateRowInts();
+        currentRowBlock = buildBlockRow(
+          context,
+          stackIndex: stackedRowBlocks.length,
+          rowBlockInts: currentRowBlockInts,
+        );
+
+        nextRowBlockInts = generateRowInts();
+        nextRowBlock = buildBlockRow(
+          context,
+          stackIndex: -1,
+          rowBlockInts: nextRowBlockInts,
+        );
+
+        stackedRowBlockInts = [];
+        stackedRowBlocks = [];
+        stackedRowBlockInts.add(currentRowBlockInts);
+        animateAddBlocks();
+        // stackedRowBlocks.add(currentRowBlock);
+      });
+
+      final frameRate = 800.milliseconds;
+      gameLoop(frameRate);
+    }
+
     bool checkCanDrop({
       required int rowBlockInt,
       required int bottomBlock,
