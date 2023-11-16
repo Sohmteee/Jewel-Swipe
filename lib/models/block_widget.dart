@@ -175,7 +175,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                       if (position.dx.abs() < leftSpace) {
                         left = position.dx;
                       } else {
-                        left = leftSpace;
+                        left = -leftSpace;
                       }
                     }
 
