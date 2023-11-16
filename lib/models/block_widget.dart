@@ -246,7 +246,11 @@ class _BlockWidgetState extends State<BlockWidget> {
                         print(stackedRowBlockInts);
 
                         nextRowBlockInts = generateRowInts();
-                        nextRowBlock = buildBlockRow(context, stackIndex:-1, rowB nextRowBlockInts);
+                        nextRowBlock = buildBlockRow(
+                          context,
+                          stackIndex: -1,
+                          rowBlockInts: nextRowBlockInts,
+                        );
 
                         if (stackedRowBlockInts.length > 1) {
                           activateGravity();
