@@ -224,12 +224,12 @@ class _BlockWidgetState extends State<BlockWidget> {
                   setState(() {
                     widget.isBeingDragged = false;
 
-                    if ((left ?? 0) > 0) {
+                    left ?? 0
+                    
                       print("Left: $left");
-                      print("Width: ${height / }");
+                      print("Width: $height");
                       int shift = (left! / height).round();
                       print(shift);
-                    }
 
                     left = null;
                   });
