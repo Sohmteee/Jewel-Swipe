@@ -243,10 +243,6 @@ class _BlockWidgetState extends State<BlockWidget> {
                             })
                         .toList();
 
-                    stackedRowBlockInts = [];
-                    stackedRowBlocks = [];
-                    stackedRowBlockInts.add(currentRowBlockInts);
-
                     /* if (stackedRowBlockInts.length < 12) {
                       setState(() {
                         currentRowBlockInts = nextRowBlockInts;
