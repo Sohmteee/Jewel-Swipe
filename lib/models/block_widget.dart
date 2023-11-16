@@ -185,7 +185,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                     List dropPosition = [];
 
                     for (int i = 0; i < widget.rowIndex; i++) {
-                      boardPosition += widget.rowInts[]
+                      boardPosition += widget.rowInts[i] == 0 ? 1 : widget.rowInts[i];
                     }
 
                     if (position.dx > 0) {
