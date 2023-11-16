@@ -279,7 +279,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                       });
                     } */
 
-                    // left = null;
+                    left = shift * height;
                   });
                 },
                 child: Container(
