@@ -418,46 +418,7 @@ class _GameScreenState extends State<GameScreen> {
     return false;
   }
 
-  Row buildBlockRow(int stackIndex, List<Map<String, dynamic>> rowBlockInts) {
-    List<Widget> rowBlocks = [];
-
-    List<int> rowNumbers = List.generate(
-      rowBlockInts.length,
-      (index) => rowBlockInts[index]["blockWidth"],
-    );
-
-    for (int i = 0; i < rowBlockInts.length; i++) {
-      var block = rowBlockInts[i];
-      if (block["blockWidth"] == 0) {
-        var rowBlock = Block(
-          context,
-          rowIndex: i,
-          stackIndex: stackIndex,
-          rowInts: rowNumbers,
-          height: stackIndex == -1 ? 5.h : null,
-          blockWidth: 1,
-          color: Colors.transparent,
-          mass: BlockMass.empty,
-        );
-        rowBlock.initializeBlock(blockColor: Colors.transparent);
-        rowBlocks.add(rowBlock.blockWidget!);
-      } else {
-        var rowBlock = Block(
-          context,
-          rowIndex: i,
-          stackIndex: stackIndex,
-          rowInts: rowNumbers,
-          blockWidth: block["blockWidth"],
-          color: block["color"],
-          mass: BlockMass.filled,
-        );
-        rowBlock.initializeBlock(blockColor: block["color"]);
-        rowBlocks.add(rowBlock.blockWidget!);
-      }
-    }
-
-    return Row(children: rowBlocks);
-  }
+  
 
   
 }

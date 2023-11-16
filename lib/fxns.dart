@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:jewel_swipe/models/block.dart';
 
 List<Map<String, dynamic>> generateRowInts() {
   List<Map<String, dynamic>> row = [];
@@ -48,4 +49,46 @@ List<Map<String, dynamic>> generateRowInts() {
 
   // print("Row: $row");
   return row;
+}
+
+Row buildBlockRow(BuildContext context, {required int stackIndex,
+    required List<Map<String, dynamic>> rowBlockInts}) {
+  List<Widget> rowBlocks = [];
+
+  List<int> rowNumbers = List.generate(
+    rowBlockInts.length,
+    (index) => rowBlockInts[index]["blockWidth"],
+  );
+
+  for (int i = 0; i < rowBlockInts.length; i++) {
+    var block = rowBlockInts[i];
+    if (block["blockWidth"] == 0) {
+      var rowBlock = Block(
+        context,
+        rowIndex: i,
+        stackIndex: stackIndex,
+        rowInts: rowNumbers,
+        height: stackIndex == -1 ? 5.h : null,
+        blockWidth: 1,
+        color: Colors.transparent,
+        mass: BlockMass.empty,
+      );
+      rowBlock.initializeBlock(blockColor: Colors.transparent);
+      rowBlocks.add(rowBlock.blockWidget!);
+    } else {
+      var rowBlock = Block(
+        context,
+        rowIndex: i,
+        stackIndex: stackIndex,
+        rowInts: rowNumbers,
+        blockWidth: block["blockWidth"],
+        color: block["color"],
+        mass: BlockMass.filled,
+      );
+      rowBlock.initializeBlock(blockColor: block["color"]);
+      rowBlocks.add(rowBlock.blockWidget!);
+    }
+  }
+
+  return Row(children: rowBlocks);
 }
