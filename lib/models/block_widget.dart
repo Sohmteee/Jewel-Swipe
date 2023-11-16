@@ -223,11 +223,14 @@ class _BlockWidgetState extends State<BlockWidget> {
                 onPanEnd: (details) {
                   setState(() {
                     widget.isBeingDragged = false;
-                    // left = null;
 
                     if ((left ?? 0) > 0) {
+                      print("Left:" $left);
                       int shift = (left! / width).round();
+                      print(shift);
                     }
+
+                    left = null;
                   });
                 },
                 child: Container(
