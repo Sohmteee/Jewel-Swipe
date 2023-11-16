@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jewel_swipe/fxns.dart';
-import 'package:jewel_swipe/models/block.dart';
 import 'package:jewel_swipe/variables.dart';
 import 'package:velocity_x/velocity_x.dart';
 

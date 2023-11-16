@@ -57,10 +57,10 @@ Row buildBlockRow(BuildContext context, {required int stackIndex,
     required List<Map<String, dynamic>> rowBlockInts}) {
   List<Widget> rowBlocks = [];
 
-  List<int> rowNumbers = List.generate(
+ /*  List<int> rowNumbers = List.generate(
     rowBlockInts.length,
     (index) => rowBlockInts[index]["blockWidth"],
-  );
+  ); */
 
   for (int i = 0; i < rowBlockInts.length; i++) {
     var block = rowBlockInts[i];
@@ -82,7 +82,7 @@ Row buildBlockRow(BuildContext context, {required int stackIndex,
         context,
         rowIndex: i,
         stackIndex: stackIndex,
-        rowBlockInts: rowNumbers,
+        rowBlockInts: rowBlockInts,
         blockWidth: block["blockWidth"],
         color: block["color"],
         mass: BlockMass.filled,
