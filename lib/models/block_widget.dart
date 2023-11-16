@@ -200,9 +200,12 @@ class _BlockWidgetState extends State<BlockWidget> {
                       for (int i = dropPosition[0];
                           i <= dropPosition[dropPosition.length - 1];
                           i++) {
-                        pixelRow[i];
 
-
+                            pixel
+                        pixelRow[i] = Pixel(
+                          color: Colors.white.withOpacity(.5),
+                          // child: ("$columnIndex, $rowIndex"),
+                        );
                       }
                     }
 
