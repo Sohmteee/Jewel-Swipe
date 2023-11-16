@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jewel_swipe/models/pixel.dart';
 import 'package:jewel_swipe/variables.dart';
 
 class BlockWidget extends StatefulWidget {

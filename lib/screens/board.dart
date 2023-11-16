@@ -1,10 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jewel_swipe/models/block.dart';
-import 'package:jewel_swipe/models/pixel.dart';
 import 'package:jewel_swipe/variables.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -69,7 +67,7 @@ class _GameScreenState extends State<GameScreen> {
   void animateAddBlocks() {
     /* stackedRowBlocks.animate().moveY(
           begin: 0,
-          end: (MediaQuery.of(context).size.blockWidth - 48.w) / 8,
+          end: (MediaQuery.of(context).size.blockWidth - 48.w) / rowLength,
           duration: 400.milliseconds,
           curve: Curves.easeIn,
         ); */
@@ -137,11 +135,11 @@ class _GameScreenState extends State<GameScreen> {
                     children: List.generate(
                       pixelArray.length,
                       (index) => Row(
-                          children: List.generate(
-                            pixelArray[index].length,
-                            (index) => pixelArray[index][index],
-                          ),
+                        children: List.generate(
+                          pixelArray[index].length,
+                          (index) => pixelArray[index][index],
                         ),
+                      ),
                     ),
                   ),
                   buildStackedRowBlocks(stackedRowBlocks)

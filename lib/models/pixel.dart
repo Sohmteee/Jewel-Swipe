@@ -41,7 +41,7 @@ class _PixelState extends State<Pixel> {
 
   @override
   Widget build(BuildContext context) {
-    final pixelSize = (MediaQuery.of(context).size.width - 48.w) / 8;
+    final pixelSize = (MediaQuery.of(context).size.width - 48.w) / rowLength;
 
     return DragTarget(
       builder: (context, candidateItems, rejectedItems) {
