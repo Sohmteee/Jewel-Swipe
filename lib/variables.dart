@@ -5,6 +5,7 @@ import 'package:jewel_swipe/models/pixel.dart';
 List<Row> stackedRowBlocks = [];
 List<List<Map<String, dynamic>>> stackedRowBlockInts = [];
 
+
 int rowLength = 8;
 int columnLength = 12;
 
