@@ -59,7 +59,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                 width: width,
                 margin: EdgeInsets.all(.5.sp),
                 decoration: BoxDecoration(
-                  color: widget.color?.withOpacity(.4),
+                  color: widget.color?.withOpacity(.7),
                   borderRadius: BorderRadius.circular(5.r),
                 ),
               ),
