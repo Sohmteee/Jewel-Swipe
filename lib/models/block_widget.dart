@@ -43,7 +43,6 @@ class _BlockWidgetState extends State<BlockWidget> {
             widget.blockWidth +
         widget.blockWidth -
         1;
-    double horizontalOffset = 50;
 
     if (widget.mass == BlockMass.filled) {
       return Container(
@@ -167,13 +166,13 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                     if (position.dx > 0) {
                       if (position.dx < rightSpace) {
-                        left = position.dx - horizontalOffset;
+                        left = position.dx;
                       } else {
                         left = rightSpace;
                       }
                     } else {
                       if (position.dx.abs() < leftSpace) {
-                        left = position.dx - horizontalOffset;
+                        left = position.dx;
                       } else {
                         left = -leftSpace;
                       }
