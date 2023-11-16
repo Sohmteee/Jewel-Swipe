@@ -48,7 +48,7 @@ class _PixelState extends State<Pixel> {
         return Container(
           height: pixelSize,
           width: pixelSize,
-          margin: EdgeInsets.all(.5.sp),
+          margin: EdgeInsets.all(.25.sp),
           decoration: BoxDecoration(
             color: widget.color ?? Colors.grey[300],
             borderRadius: BorderRadius.circular(5.r),

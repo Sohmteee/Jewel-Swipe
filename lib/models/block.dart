@@ -1,48 +1,35 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jewel_swipe/models/block_widget.dart';
 import 'package:jewel_swipe/variables.dart';
 
 class Block {
-  int pieceWidth;
-  BuildContext context;
-
   Block(
     this.context, {
-    required this.index,
+    required this.rowIndex,
+    required this.stackIndex,
     required this.rowInts,
-    required this.pieceWidth,
+    required this.blockWidth,
     this.color,
+    this.height,
     required this.mass,
     this.isBeingDragged,
   });
 
-  int index;
-  List<int> rowInts = [];
-  List<int> position = [];
-  Color? color = Colors.yellow;
+  BuildContext context;
+  int rowIndex;
+  int stackIndex;
+  List<int> rowInts;
+  int blockWidth;
+  // List<int> position = [];
+  Color? color;
+  double? height;
   BlockMass mass;
   bool? isBeingDragged = false;
-  Widget? pieceWidget;
+  Widget? blockWidget;
 
-  final List<Color> _colors = [
-    Colors.red[300]!,
-    Colors.blue[300]!,
-    Colors.green[300]!,
-    Colors.yellow[300]!,
-    Colors.grey[300]!,
-    Colors.orange[300]!,
-    Colors.pink[300]!,
-  ];
-
-  Color generateColor() {
-    int index = Random().nextInt(_colors.length);
-    return _colors[index];
-  }
-
-  void initializeBlock({Color? blockColor}) {
-    color = blockColor ?? generateColor();
+  void initializeBlock({required Color blockColor}) {
+    color = blockColor;
     buildBlock();
 
     /* switch (pieceLength) {
@@ -55,7 +42,7 @@ class Block {
     buildBlock();
 
     return Block(
-      width: pieceWidth,
+      width: width,
       isBeingDragged: true,
       mass: BlockMass.filled,
       color: color,
@@ -63,63 +50,20 @@ class Block {
   } */
 
   void buildBlock() {
-    double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
-    double width =
-        (MediaQuery.of(context).size.width - 48.w) / rowLength * pieceWidth +
-            pieceWidth -
-            1;
 
-    pieceWidget = (mass == BlockMass.filled)
-        ? Draggable(
-            // data: position,
-            axis: Axis.horizontal,
-
-            childWhenDragging: Container(
-              height: height,
-              width: width,
-              margin: EdgeInsets.all(.5.sp),
-              decoration: BoxDecoration(
-                color: color?.withOpacity(.4),
-                borderRadius: BorderRadius.circular(5.r),
-              ),
-            ),
-            feedback: Container(
-              height: height,
-              width: width,
-              margin: EdgeInsets.all(.5.sp),
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(5.r),
-              ),
-            ),
-
-            child: Container(
-              height: height,
-              width: width,
-              margin: EdgeInsets.all(.5.sp),
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(5.r),
-              ),
-            ),
-          )
-        : DragTarget(
-            builder: (context, candidateItems, rejectedItems) {
-              return Container(
-                height: height,
-                width: width,
-                color: Colors.transparent,
-                margin: EdgeInsets.all(.5.sp),
-              );
-            },
-            onAccept: (data) {
-              print('accepted');
-            },
-          );
+   blockWidget = BlockWidget(
+      rowIndex: rowIndex,
+      stackIndex: stackIndex,
+      rowInts: rowInts,
+      height: height,
+      blockWidth: blockWidth,
+      color: color,
+      mass: mass,
+    );
   }
 
   void moveBlock(Directions direction) {
-    switch (direction) {
+    /* switch (direction) {
       case Directions.down:
         for (int i = 0; i < position.length; i++) {
           position[i] += rowLength;
@@ -137,6 +81,6 @@ class Block {
         break;
 
       default:
-    }
+    } */
   }
 }

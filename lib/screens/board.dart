@@ -19,8 +19,6 @@ class _GameScreenState extends State<GameScreen> {
   // late Block currentBlock;
   Row currentRowBlock = const Row(), nextRowBlock = const Row();
   List<Map<String, dynamic>> currentRowBlockInts = [], nextRowBlockInts = [];
-  List<Row> stackedRowBlocks = [];
-  List<List<Map<String, dynamic>>> stackedRowBlockInts = [];
   double? x, y;
 
   @override
@@ -28,7 +26,7 @@ class _GameScreenState extends State<GameScreen> {
     super.initState();
     /* currentBlock = Block(
       context,
-      pieceWidth: Random().nextInt(4) + 1,
+      blockWidth: Random().nextInt(4) + 1,
       mass: BlockMass.filled,
     ); */
 
@@ -43,10 +41,11 @@ class _GameScreenState extends State<GameScreen> {
 
     setState(() {
       currentRowBlockInts = generateRowInts();
-      currentRowBlock = buildBlockRow(currentRowBlockInts);
+      currentRowBlock =
+          buildBlockRow(stackedRowBlocks.length, currentRowBlockInts);
 
       nextRowBlockInts = generateRowInts();
-      nextRowBlock = buildBlockRow(nextRowBlockInts);
+      nextRowBlock = buildBlockRow(-1, nextRowBlockInts);
 
       stackedRowBlockInts = [];
       stackedRowBlocks = [];
@@ -70,7 +69,7 @@ class _GameScreenState extends State<GameScreen> {
   void animateAddBlocks() {
     /* stackedRowBlocks.animate().moveY(
           begin: 0,
-          end: (MediaQuery.of(context).size.width - 48.w) / 8,
+          end: (MediaQuery.of(context).size.blockWidth - 48.w) / 8,
           duration: 400.milliseconds,
           curve: Curves.easeIn,
         ); */
@@ -98,7 +97,7 @@ class _GameScreenState extends State<GameScreen> {
         final pixelX = pixelList[index].x!; // Get the x position of the pixel
         final pixelY = pixelList[index].y!; // Get the y position of the pixel
         final pixelSize =
-            (MediaQuery.of(context).size.width - 35.h) / rowLength;
+            (MediaQuery.of(context).size.blockWidth - 35.h) / rowLength;
 
         // Check if the piece overlaps with the current pixel
         if (x! <= pixelX && x! > (pixelX + pixelSize) ||
@@ -142,7 +141,7 @@ class _GameScreenState extends State<GameScreen> {
                           rowLength,
                           (rowIndex) => Pixel(
                             color: Colors.grey[900]!.withOpacity(.2),
-                            child: ("$columnIndex, $rowIndex"),
+                            // child: ("$columnIndex, $rowIndex"),
                           ),
                         ),
                       ),
@@ -153,9 +152,20 @@ class _GameScreenState extends State<GameScreen> {
               ),
               SizedBox(height: 5.h),
               SizedBox(
-                height: 5.h,
-                width: double.maxFinite,
-                child: nextRowBlock,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                height: 7.h,
+                width: double.maxFinite,child:
+                    nextRowBlock,),
+                    Container(
+                      height: 7.h,
+                      width: double.maxFinite,
+                      color: Colors.transparent,
+                    ),
+                  ],
+                ),
               ),
               const Spacer(),
               Row(
@@ -206,7 +216,8 @@ class _GameScreenState extends State<GameScreen> {
                                 print(stackedRowBlockInts);
 
                                 nextRowBlockInts = generateRowInts();
-                                nextRowBlock = buildBlockRow(nextRowBlockInts);
+                                nextRowBlock =
+                                    buildBlockRow(-1, nextRowBlockInts);
 
                                 if (stackedRowBlockInts.length > 1) {
                                   activateGravity();
@@ -248,7 +259,7 @@ class _GameScreenState extends State<GameScreen> {
 
       // loop through each of the blocks in the current row
       for (int blockIndex = 0; blockIndex < rowBlockInts.length; blockIndex++) {
-        int rowBlockInt = rowBlockInts[blockIndex]["pieceWidth"];
+        int rowBlockInt = rowBlockInts[blockIndex]["blockWidth"];
 
         // go to the next block if it's an empty one
         if (rowBlockInt == 0) {
@@ -269,13 +280,13 @@ class _GameScreenState extends State<GameScreen> {
 
         for (int i = 0; i < bottomRowBlockInts.length; i++) {
           if (bottomPosition +
-                  (bottomRowBlockInts[i]["pieceWidth"] == 0
+                  (bottomRowBlockInts[i]["blockWidth"] == 0
                       ? 1
-                      : bottomRowBlockInts[i]["pieceWidth"]) <=
+                      : bottomRowBlockInts[i]["blockWidth"]) <=
               position) {
-            bottomPosition += bottomRowBlockInts[i]["pieceWidth"] == 0
+            bottomPosition += bottomRowBlockInts[i]["blockWidth"] == 0
                 ? 1
-                : int.parse(bottomRowBlockInts[i]["pieceWidth"].toString());
+                : int.parse(bottomRowBlockInts[i]["blockWidth"].toString());
           } else {
             bottomBlockIndex = i;
             break;
@@ -287,7 +298,7 @@ class _GameScreenState extends State<GameScreen> {
         // calculate the position of the row block int
         position += (rowBlockInt == 0) ? 1 : rowBlockInt;
 
-        bottomBlock = bottomRowBlockInts[bottomBlockIndex]["pieceWidth"];
+        bottomBlock = bottomRowBlockInts[bottomBlockIndex]["blockWidth"];
 
         // check if the pixel under it is empty
         if (bottomBlock == 0) {
@@ -308,17 +319,17 @@ class _GameScreenState extends State<GameScreen> {
 
             //replace the remaning parts of the block with zeros
             rowBlockInts[blockIndex] = {
-              "pieceWidth": 0,
+              "blockWidth": 0,
               "color": Colors.transparent
             };
-            for (int i = 0; i < droppingBlock["pieceWidth"] - 1; i++) {
+            for (int i = 0; i < droppingBlock["blockWidth"] - 1; i++) {
               rowBlockInts.insert(
-                  blockIndex, {"pieceWidth": 0, "color": Colors.transparent});
+                  blockIndex, {"blockWidth": 0, "color": Colors.transparent});
             }
 
             // update the bottom row block ints
             for (int i = bottomBlockIndex;
-                i < bottomBlockIndex + droppingBlock["pieceWidth"];
+                i < bottomBlockIndex + droppingBlock["blockWidth"];
                 i++) {
               bottomRowBlockInts.removeAt(bottomBlockIndex);
             }
@@ -337,8 +348,59 @@ class _GameScreenState extends State<GameScreen> {
       setState(() {
         stackedRowBlocks = [];
         for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockInts) {
-          stackedRowBlocks.add(buildBlockRow(rowBlockInts));
+          stackedRowBlocks
+              .add(buildBlockRow(stackedRowBlocks.length, rowBlockInts));
         }
+
+        // check if a row is complete
+        Future.delayed(400.milliseconds, () {
+          setState(() {
+            int count = 0;
+
+            // loop through the stack from the bottom
+            for (int i = stackedRowBlockInts.length - 1; i >= 0; i--) {
+              List<Map<String, dynamic>> rowBlockInts = stackedRowBlockInts[i];
+
+              // check if the row contains any empty pixel
+              // if it doesn't, remove the row and activate gravity again
+              if (rowBlockInts.any((element) => element["blockWidth"] == 0)) {
+                continue;
+              } else {
+                // remove the row
+                stackedRowBlockInts.removeAt(i);
+                stackedRowBlocks.removeAt(i);
+                count += 1;
+
+                // activate gravity again
+                activateGravity();
+              }
+            }
+
+            for (int i = 0; i < count; i++) {
+              if (stackedRowBlockInts.length < 12) {
+                Future.delayed(500.milliseconds, () {
+                  setState(() {
+                    currentRowBlockInts = nextRowBlockInts;
+                    currentRowBlock = nextRowBlock;
+
+                    stackedRowBlockInts.add(currentRowBlockInts);
+                    animateAddBlocks();
+                    print(stackedRowBlockInts);
+
+                    nextRowBlockInts = generateRowInts();
+                    nextRowBlock = buildBlockRow(-1, nextRowBlockInts);
+
+                    if (stackedRowBlockInts.length > 1) {
+                      activateGravity();
+                    }
+                  });
+                });
+              } else {
+                startGame();
+              }
+            }
+          });
+        });
       });
     });
   }
@@ -356,9 +418,9 @@ class _GameScreenState extends State<GameScreen> {
     int count = 1;
 
     while (bottomBlockIndex + count < bottomRowBlockInts.length &&
-        bottomRowBlockInts[bottomBlockIndex + count]["pieceWidth"] == 0) {
+        bottomRowBlockInts[bottomBlockIndex + count]["blockWidth"] == 0) {
       int index = bottomBlockIndex + count;
-      if (bottomRowBlockInts[index]["pieceWidth"] == 0) {
+      if (bottomRowBlockInts[index]["blockWidth"] == 0) {
         count += 1;
       } else {
         break;
@@ -373,39 +435,41 @@ class _GameScreenState extends State<GameScreen> {
     return false;
   }
 
-  Row buildBlockRow(List<Map<String, dynamic>> rowBlockInts) {
+  Row buildBlockRow(int stackIndex, List<Map<String, dynamic>> rowBlockInts) {
     List<Widget> rowBlocks = [];
 
-    List<int> rowNumbers = List.generate(rowBlockInts.length, (index) => rowBlockInts[index]["pieceWidth"]);
+    List<int> rowNumbers = List.generate(
+      rowBlockInts.length,
+      (index) => rowBlockInts[index]["blockWidth"],
+    );
 
     for (int i = 0; i < rowBlockInts.length; i++) {
       var block = rowBlockInts[i];
-      if (block["pieceWidth"] == 0) {
+      if (block["blockWidth"] == 0) {
         var rowBlock = Block(
           context,
-          index: i,
+          rowIndex: i,
+          stackIndex: stackIndex,
           rowInts: rowNumbers,
-          pieceWidth: 1,
+          height: stackIndex == -1 ? 5.h : null,
+          blockWidth: 1,
           color: Colors.transparent,
           mass: BlockMass.empty,
         );
         rowBlock.initializeBlock(blockColor: Colors.transparent);
-        rowBlocks.add(
-          rowBlock.pieceWidget!,
-        );
+        rowBlocks.add(rowBlock.blockWidget!);
       } else {
         var rowBlock = Block(
           context,
-          index: i,
+          rowIndex: i,
+          stackIndex: stackIndex,
           rowInts: rowNumbers,
-          pieceWidth: block["pieceWidth"],
+          blockWidth: block["blockWidth"],
           color: block["color"],
           mass: BlockMass.filled,
         );
         rowBlock.initializeBlock(blockColor: block["color"]);
-        rowBlocks.add(
-          rowBlock.pieceWidget!,
-        );
+        rowBlocks.add(rowBlock.blockWidget!);
       }
     }
 
@@ -435,24 +499,24 @@ class _GameScreenState extends State<GameScreen> {
     while (availableSpace > 0) {
       if (availableSpace <= 4) {
         if (rowNumbers.contains(0)) {
-          int pieceWidth = Random().nextInt(availableSpace + 1);
+          int blockWidth = Random().nextInt(availableSpace + 1);
           Color color = generateColor();
-          row.add({"pieceWidth": pieceWidth, "color": color});
-          rowNumbers.add(pieceWidth);
-          availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
+          row.add({"blockWidth": blockWidth, "color": color});
+          rowNumbers.add(blockWidth);
+          availableSpace -= blockWidth == 0 ? 1 : blockWidth;
         } else {
-          int pieceWidth = 0;
+          int blockWidth = 0;
           Color color = Colors.transparent;
-          row.add({"pieceWidth": pieceWidth, "color": color});
-          rowNumbers.add(pieceWidth);
+          row.add({"blockWidth": blockWidth, "color": color});
+          rowNumbers.add(blockWidth);
           availableSpace -= 1;
         }
       } else {
-        int pieceWidth = Random().nextInt(5);
+        int blockWidth = Random().nextInt(5);
         Color color = generateColor();
-        row.add({"pieceWidth": pieceWidth, "color": color});
-        rowNumbers.add(pieceWidth);
-        availableSpace -= pieceWidth == 0 ? 1 : pieceWidth;
+        row.add({"blockWidth": blockWidth, "color": color});
+        rowNumbers.add(blockWidth);
+        availableSpace -= blockWidth == 0 ? 1 : blockWidth;
       }
     }
 
