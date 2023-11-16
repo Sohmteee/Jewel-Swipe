@@ -198,10 +198,12 @@ class _BlockWidgetState extends State<BlockWidget> {
                       for (int j = dropPosition[0];
                           j <= dropPosition[dropPosition.length - 1];
                           j++) {
-                        pixelArray[i][j] = Pixel(
-                          color: Colors.white.withOpacity(.5),
-                          // child: ("$columnIndex, $rowIndex"),
-                        );
+                        setState(() {
+                          pixelArray[i][j] = Pixel(
+                            color: Colors.white.withOpacity(.5),
+                            // child: ("$columnIndex, $rowIndex"),
+                          );
+                        });
                       }
                     }
 
