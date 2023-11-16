@@ -255,8 +255,6 @@ class _BlockWidgetState extends State<BlockWidget> {
                       );
                     }
 
-                    left = null;
-
                     stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
                     /* if (stackedRowBlockInts.length < 12) {
@@ -281,6 +279,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                       });
                     } */
                   });
+                  left = null;
                 },
                 child: Container(
                   height: height,
