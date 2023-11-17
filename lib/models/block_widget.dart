@@ -291,7 +291,9 @@ class _BlockWidgetState extends State<BlockWidget> {
                         }
                       }
                     });
-Futu
+                    Future.delayed(1.seconds, () {
+                      left = null;
+                    });
                   },
                   child: Container(
                     height: height,
