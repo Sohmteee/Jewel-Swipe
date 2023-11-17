@@ -27,10 +27,15 @@ class BlockProvider extends ChangeNotifier {
     Future.delayed(0.milliseconds, () {
       stackedRowBlockValues.add(currentRowBlockValues);
       stackedRowBlocks.add(currentRowBlock);
-      print(List.generate(
+      print(
+        List.generate(
           stackedRowBlockValues.length,
-          (i) => List.generate(stackedRowBlockValues[i].length,
-              (j) => stackedRowBlockValues[i][j]["blockWidth"])));
+          (i) => List.generate(
+            stackedRowBlockValues[i].length,
+            (j) => stackedRowBlockValues[i][j]["blockWidth"],
+          ),
+        ),
+      );
       notifyListeners();
     });
   }
