@@ -21,7 +21,7 @@ class BlockProvider extends ChangeNotifier {
   );
 
   late Column stackedRowBlocksWidget;
-  int count = 0;
+  // int count = 0;
 
   void animateAddBlocks() {
     Future.delayed(0.milliseconds, () {
@@ -197,7 +197,7 @@ class BlockProvider extends ChangeNotifier {
           }
         }
 
-        for (int i = 0; i < count; i++) {
+        /* for (int i = 0; i < count; i++) {
           if (stackedRowBlockValues.length < 12) {
             Future.delayed(500.milliseconds, () {
               currentRowBlockInts = nextRowBlockInts;
@@ -222,7 +222,7 @@ class BlockProvider extends ChangeNotifier {
             startGame(context);
           }
         }
-        count = 0;
+        count = 0; */
 
         notifyListeners();
       });
