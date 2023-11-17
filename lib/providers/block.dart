@@ -25,6 +25,7 @@ class BlockProvider extends ChangeNotifier {
 
   void animateAddBlocks() {
     Future.delayed(0.milliseconds, () {
+      stackedRowBlockValues.add(currentRowBlockInts);
       stackedRowBlocks.add(currentRowBlock);
       print(List.generate(
           stackedRowBlockValues.length,
