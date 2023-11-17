@@ -182,7 +182,7 @@ class BlockProvider extends ChangeNotifier {
       notifyListeners();
 
       // check if a row is complete
-      Future.delayed(400.milliseconds, () {
+      Future.delayed(200.milliseconds, () {
         // loop through the stack from the bottom
         for (int i = stackedRowBlockValues.length - 1; i >= 0; i--) {
           List<Map<String, dynamic>> rowBlockInts = stackedRowBlockValues[i];
@@ -201,33 +201,6 @@ class BlockProvider extends ChangeNotifier {
             activateGravity(context);
           }
         }
-
-        /* for (int i = 0; i < count; i++) {
-          if (stackedRowBlockValues.length < 12) {
-            Future.delayed(500.milliseconds, () {
-              currentRowBlockInts = nextRowBlockInts;
-              currentRowBlock = nextRowBlock;
-
-              animateAddBlocks();
-              stackedRowBlocksWidget = Column(children: stackedRowBlocks);
-
-              nextRowBlockInts = generateRowInts();
-              nextRowBlock = buildBlockRow(
-                context,
-                stackIndex: -1,
-                rowBlockInts: nextRowBlockInts,
-              );
-
-              if (stackedRowBlockValues.length > 1) {
-                activateGravity(context);
-              }
-              notifyListeners();
-            });
-          } else {
-            startGame(context);
-          }
-        }
-        count = 0; */
 
         notifyListeners();
       });
