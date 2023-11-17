@@ -161,51 +161,48 @@ class BlockProvider extends ChangeNotifier {
       }
     }
 
-    Future.delayed(400.milliseconds, () {
-      stackedRowBlocks = [];
-      for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockValues) {
-        if (rowBlockInts
-            .every((rowBlockInt) => rowBlockInt["blockWidth"] == 0)) {
-          stackedRowBlockValues.remove(rowBlockInts);
+    stackedRowBlocks = [];
+    for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockValues) {
+      if (rowBlockInts.every((rowBlockInt) => rowBlockInt["blockWidth"] == 0)) {
+        stackedRowBlockValues.remove(rowBlockInts);
+      } else {
+        stackedRowBlocks.add(
+          buildBlockRow(
+            context,
+            stackIndex: stackedRowBlocks.length,
+            rowBlockInts: rowBlockInts,
+          ),
+        );
+      }
+    }
+
+    stackedRowBlocksWidget = Column(children: stackedRowBlocks);
+    notifyListeners();
+
+    // check if a row is complete
+    Future.delayed(200.milliseconds, () {
+      // loop through the stack from the bottom
+      for (int i = stackedRowBlockValues.length - 1; i >= 0; i--) {
+        List<Map<String, dynamic>> rowBlockInts = stackedRowBlockValues[i];
+
+        // check if the row contains any empty pixel
+        // if it doesn't, remove the row and activate gravity again
+        if (rowBlockInts.any((element) => element["blockWidth"] == 0)) {
+          continue;
         } else {
-          stackedRowBlocks.add(
-            buildBlockRow(
-              context,
-              stackIndex: stackedRowBlocks.length,
-              rowBlockInts: rowBlockInts,
-            ),
-          );
+          // remove the row
+          stackedRowBlockValues.removeAt(i);
+          stackedRowBlocks.removeAt(i);
+          // count += 1;
+
+          // activate gravity again
+          activateGravity(context);
         }
       }
 
-      stackedRowBlocksWidget = Column(children: stackedRowBlocks);
-      notifyListeners();
-
-      // check if a row is complete
-      Future.delayed(200.milliseconds, () {
-        // loop through the stack from the bottom
-        for (int i = stackedRowBlockValues.length - 1; i >= 0; i--) {
-          List<Map<String, dynamic>> rowBlockInts = stackedRowBlockValues[i];
-
-          // check if the row contains any empty pixel
-          // if it doesn't, remove the row and activate gravity again
-          if (rowBlockInts.any((element) => element["blockWidth"] == 0)) {
-            continue;
-          } else {
-            // remove the row
-            stackedRowBlockValues.removeAt(i);
-            stackedRowBlocks.removeAt(i);
-            // count += 1;
-
-            // activate gravity again
-            activateGravity(context);
-          }
-        }
-
-        notifyListeners();
-      });
       notifyListeners();
     });
+    notifyListeners();
 
     notifyListeners();
   }
