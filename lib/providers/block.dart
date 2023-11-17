@@ -7,7 +7,7 @@ import 'package:jewel_swipe/variables.dart';
 class BlockProvider extends ChangeNotifier {
   List<Row> stackedRowBlocks = [];
   List<List<Map<String, dynamic>>> stackedRowBlockValues = [];
-  List<Map<String, dynamic>> currentRowBlockInts = [], nextRowBlockInts = [];
+  List<Map<String, dynamic>> currentRowBlockValues = [], nextRowBlockInts = [];
   Row currentRowBlock = const Row(), nextRowBlock = const Row();
   List<List<Pixel>> pixelArray = List.generate(
     columnLength,
@@ -25,7 +25,7 @@ class BlockProvider extends ChangeNotifier {
 
   void animateAddBlocks() {
     Future.delayed(0.milliseconds, () {
-      stackedRowBlockValues.add(currentRowBlockInts);
+      stackedRowBlockValues.add(currentRowBlockValues);
       stackedRowBlocks.add(currentRowBlock);
       print(List.generate(
           stackedRowBlockValues.length,
@@ -37,7 +37,7 @@ class BlockProvider extends ChangeNotifier {
 
   void onTap(BuildContext context) {
     if (stackedRowBlockValues.length < 12) {
-      currentRowBlockInts = nextRowBlockInts;
+      currentRowBlockValues = nextRowBlockInts;
       currentRowBlock = nextRowBlock;
 
       animateAddBlocks();
@@ -50,7 +50,7 @@ class BlockProvider extends ChangeNotifier {
         rowBlockInts: nextRowBlockInts,
       );
 
-      stackedRowBlockValues.add(currentRowBlockInts);
+      stackedRowBlockValues.add(currentRowBlockValues);
 
       print(
           "Stacked Row Block Values: ${List.generate(stackedRowBlockValues.length, (i) => List.generate(stackedRowBlockValues[i].length, (j) => stackedRowBlockValues[i][j]["blockWidth"]))}");
@@ -275,11 +275,11 @@ class BlockProvider extends ChangeNotifier {
     // currentBlock.initializeBlock();
     // currentBlock.rotate(currentBlock);
 
-    currentRowBlockInts = generateRowInts();
+    currentRowBlockValues = generateRowInts();
     currentRowBlock = buildBlockRow(
       context,
       stackIndex: stackedRowBlocks.length,
-      rowBlockInts: currentRowBlockInts,
+      rowBlockInts: currentRowBlockValues,
     );
 
     nextRowBlockInts = generateRowInts();

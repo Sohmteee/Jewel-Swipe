@@ -269,13 +269,13 @@ class _BlockWidgetState extends State<BlockWidget> {
                       }
 
                       if (blockProvider.stackedRowBlockValues.length < 12) {
-                        blockProvider.currentRowBlockInts =
+                        blockProvider.currentRowBlockValues =
                             blockProvider.nextRowBlockInts;
                         blockProvider.currentRowBlock =
                             blockProvider.nextRowBlock;
 
                         blockProvider.stackedRowBlockValues
-                            .add(blockProvider.currentRowBlockInts);
+                            .add(blockProvider.currentRowBlockValues);
                         blockProvider.animateAddBlocks();
                         print(blockProvider.stackedRowBlockValues);
 
