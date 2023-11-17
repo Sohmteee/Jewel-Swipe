@@ -267,8 +267,9 @@ class _BlockWidgetState extends State<BlockWidget> {
                       if (blockProvider.stackedRowBlockValues.length > 1) {
                         blockProvider.activateGravity(context);
                       }
-
-                      blockProvider.onTap(context);
+                      Future.delayed(400.milliseconds, () {
+                        blockProvider.onTap(context);
+                      });
                     });
                     Future.delayed(1.seconds, () {
                       left = null;
