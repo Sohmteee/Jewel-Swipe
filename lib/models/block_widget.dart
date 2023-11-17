@@ -274,8 +274,6 @@ class _BlockWidgetState extends State<BlockWidget> {
                         blockProvider.currentRowBlock =
                             blockProvider.nextRowBlock;
 
-                        blockProvider.stackedRowBlockValues
-                            .add(blockProvider.currentRowBlockValues);
                         blockProvider.animateAddBlocks();
                         print(blockProvider.stackedRowBlockValues);
 
