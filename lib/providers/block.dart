@@ -165,7 +165,9 @@ class BlockProvider extends ChangeNotifier {
     Future.delayed(400.milliseconds, () {
       stackedRowBlocks = [];
       for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockValues) {
-        if (rowBlockInts.every((rowBlockInt) => rowBlockInt["blockWidth"] == 0))
+        if (rowBlockInts.every((rowBlockInt) => rowBlockInt["blockWidth"] == 0)) {
+          
+        }
         stackedRowBlocks.add(
           buildBlockRow(
             context,
