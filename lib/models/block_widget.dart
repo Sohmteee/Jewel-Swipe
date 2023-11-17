@@ -250,13 +250,13 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                       blockProvider.stackedRowBlocks = [];
 
-                      for (List<Map<String, dynamic>> rowBlockInts
+                      for (List<Map<String, dynamic>> rowBlockValues
                           in blockProvider.stackedRowBlockValues) {
                         blockProvider.stackedRowBlocks.add(
                           buildBlockRow(
                             context,
                             stackIndex: blockProvider.stackedRowBlocks.length,
-                            rowBlockInts: rowBlockInts,
+                            rowBlockInts: rowBlockValues,
                           ),
                         );
                       }
