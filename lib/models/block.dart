@@ -52,7 +52,7 @@ class Block {
     blockWidget = BlockWidget(
       rowIndex: rowIndex,
       stackIndex: stackIndex,
-      rowBlockInts: rowBlockInts,
+      rowBlockValues: rowBlockInts,
       height: height,
       blockWidth: blockWidth,
       color: color,

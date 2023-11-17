@@ -13,7 +13,7 @@ class BlockWidget extends StatefulWidget {
     super.key,
     required this.rowIndex,
     required this.stackIndex,
-    required this.rowBlockInts,
+    required this.rowBlockValues,
     required this.blockWidth,
     this.color,
     this.height,
@@ -24,7 +24,7 @@ class BlockWidget extends StatefulWidget {
 
   int rowIndex;
   int stackIndex;
-  List<Map<String, dynamic>> rowBlockInts;
+  List<Map<String, dynamic>> rowBlockValues;
   int blockWidth;
   Color? color;
   double? height;
@@ -86,7 +86,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                     } else {
                       int count = 0;
                       for (int i = leftBlocks - 1; i >= 0; i--) {
-                        if (widget.rowBlockInts[i]["blockWidth"] == 0) {
+                        if (widget.rowBlockValues[i]["blockWidth"] == 0) {
                           leftSpace +=
                               (MediaQuery.of(context).size.width - 48.w) /
                                   rowLength;
@@ -98,14 +98,14 @@ class _BlockWidgetState extends State<BlockWidget> {
                       leftSpace += count - 1 < 0 ? 0 : count - 1;
                     }
 
-                    if (widget.rowIndex == widget.rowBlockInts.length - 1) {
+                    if (widget.rowIndex == widget.rowBlockValues.length - 1) {
                       rightSpace = 0;
                     } else {
                       int count = 0;
                       for (int i = widget.rowIndex + 1;
-                          i <= widget.rowBlockInts.length - 1;
+                          i <= widget.rowBlockValues.length - 1;
                           i++) {
-                        if (widget.rowBlockInts[i]["blockWidth"] == 0) {
+                        if (widget.rowBlockValues[i]["blockWidth"] == 0) {
                           rightSpace +=
                               (MediaQuery.of(context).size.width - 48.w) /
                                   rowLength;
@@ -139,7 +139,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                       } else {
                         int count = 0;
                         for (int i = leftBlocks - 1; i >= 0; i--) {
-                          if (widget.rowBlockInts[i]["blockWidth"] == 0) {
+                          if (widget.rowBlockValues[i]["blockWidth"] == 0) {
                             leftSpace +=
                                 (MediaQuery.of(context).size.width - 48.w) /
                                     rowLength;
@@ -151,14 +151,14 @@ class _BlockWidgetState extends State<BlockWidget> {
                         }
                       }
 
-                      if (widget.rowIndex == widget.rowBlockInts.length - 1) {
+                      if (widget.rowIndex == widget.rowBlockValues.length - 1) {
                         rightSpace = 0;
                       } else {
                         int count = 0;
                         for (int i = widget.rowIndex + 1;
-                            i <= widget.rowBlockInts.length - 1;
+                            i <= widget.rowBlockValues.length - 1;
                             i++) {
-                          if (widget.rowBlockInts[i]["blockWidth"] == 0) {
+                          if (widget.rowBlockValues[i]["blockWidth"] == 0) {
                             rightSpace +=
                                 (MediaQuery.of(context).size.width - 48.w) /
                                     rowLength;
@@ -239,14 +239,14 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                       left = shift * height;
 
-                      widget.rowBlockInts.removeAt(widget.rowIndex);
-                      widget.rowBlockInts.insert(widget.rowIndex + shift, {
+                      widget.rowBlockValues.removeAt(widget.rowIndex);
+                      widget.rowBlockValues.insert(widget.rowIndex + shift, {
                         "blockWidth": widget.blockWidth,
                         "color": widget.color,
                       });
 
                       blockProvider.stackedRowBlockValues[widget.stackIndex] =
-                          widget.rowBlockInts;
+                          widget.rowBlockValues;
 
                       blockProvider.stackedRowBlocks = [];
 
