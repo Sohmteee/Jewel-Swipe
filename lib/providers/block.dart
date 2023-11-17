@@ -49,7 +49,7 @@ class BlockProvider extends ChangeNotifier {
       stackedRowBlockValues.add(currentRowBlockInts);
 
       print(
-          "Stacked Row Block Values: ${List.generate(stackedRowBlockValues.length, (index) => stackedRowBlockValues[index][0])}");
+          "Stacked Row Block Values: ${List.generate(stackedRowBlockValues.length, (index) => List.generate(stackedRowBlockValues[index].length, (index) => stackedRowBlockValues[index][index]["blockWidth"]))}");
 
       if (stackedRowBlockValues.length > 1) {
         print("activating gravity");
