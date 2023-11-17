@@ -50,8 +50,6 @@ class BlockProvider extends ChangeNotifier {
         rowBlockInts: nextRowBlockInts,
       );
 
-      stackedRowBlockValues.add(currentRowBlockValues);
-
       print(
           "Stacked Row Block Values: ${List.generate(stackedRowBlockValues.length, (i) => List.generate(stackedRowBlockValues[i].length, (j) => stackedRowBlockValues[i][j]["blockWidth"]))}");
 
