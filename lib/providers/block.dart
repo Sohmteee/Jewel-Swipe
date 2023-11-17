@@ -168,15 +168,17 @@ class BlockProvider extends ChangeNotifier {
         if (rowBlockInts
             .every((rowBlockInt) => rowBlockInt["blockWidth"] == 0)) {
           stackedRowBlockValues.remove(rowBlockInts);
-        } else {}
-        stackedRowBlocks.add(
-          buildBlockRow(
-            context,
-            stackIndex: stackedRowBlocks.length,
-            rowBlockInts: rowBlockInts,
-          ),
-        );
+        } else {
+          stackedRowBlocks.add(
+            buildBlockRow(
+              context,
+              stackIndex: stackedRowBlocks.length,
+              rowBlockInts: rowBlockInts,
+            ),
+          );
+        }
       }
+
       stackedRowBlocksWidget = Column(children: stackedRowBlocks);
       notifyListeners();
 
