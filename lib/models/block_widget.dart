@@ -263,7 +263,7 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                       blockProvider.stackedRowBlocksWidget =
                           Column(children: blockProvider.stackedRowBlocks);
-
+print()
                       if (blockProvider.stackedRowBlockValues.length > 1) {
                         blockProvider.activateGravity(context);
                       }
