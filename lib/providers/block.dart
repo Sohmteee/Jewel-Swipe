@@ -202,7 +202,6 @@ class BlockProvider extends ChangeNotifier {
 
       notifyListeners();
     });
-    notifyListeners();
 
     notifyListeners();
   }
