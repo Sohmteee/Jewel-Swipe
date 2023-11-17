@@ -26,7 +26,10 @@ class BlockProvider extends ChangeNotifier {
   void animateAddBlocks() {
     Future.delayed(0.milliseconds, () {
       stackedRowBlocks.add(currentRowBlock);
-      print(stackedRowBlockValues);
+      print(List.generate(
+          stackedRowBlockValues.length,
+          (i) => List.generate(stackedRowBlockValues[i].length,
+              (j) => stackedRowBlockValues[i][j]["blockWidth"])));
       notifyListeners();
     });
   }
