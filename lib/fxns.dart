@@ -53,11 +53,12 @@ List<Map<String, dynamic>> generateRowInts() {
   return row;
 }
 
-Row buildBlockRow(BuildContext context, {required int stackIndex,
+Row buildBlockRow(BuildContext context,
+    {required int stackIndex,
     required List<Map<String, dynamic>> rowBlockInts}) {
   List<Widget> rowBlocks = [];
 
- /*  List<int> rowNumbers = List.generate(
+  /*  List<int> rowNumbers = List.generate(
     rowBlockInts.length,
     (index) => rowBlockInts[index]["blockWidth"],
   ); */
@@ -94,5 +95,3 @@ Row buildBlockRow(BuildContext context, {required int stackIndex,
 
   return Row(children: rowBlocks);
 }
-
-

@@ -1,22 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jewel_swipe/models/pixel.dart';
 
-List<Row> stackedRowBlocks = [];
-List<List<Map<String, dynamic>>> stackedRowBlockInts = [];
-List<Map<String, dynamic>> currentRowBlockInts = [], nextRowBlockInts = [];
-Row currentRowBlock = const Row(), nextRowBlock = const Row();
-List<List<Pixel>> pixelArray = List.generate(
-  columnLength,
-  (columnIndex) => List.generate(
-    rowLength,
-    (rowIndex) => Pixel(
-      color: Colors.grey[900]!.withOpacity(.2),
-      // child: ("$columnIndex, $rowIndex"),
-    ),
-  ),
-);
 
-late Column stackedRowBlocksWidget;
 
 int rowLength = 8;
 int columnLength = 12;
