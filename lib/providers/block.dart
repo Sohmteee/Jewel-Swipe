@@ -6,7 +6,7 @@ import 'package:jewel_swipe/variables.dart';
 
 class BlockProvider extends ChangeNotifier {
   List<Row> stackedRowBlocks = [];
-  List<List<Map<String, dynamic>>> stackedRowBlockInts = [];
+  List<List<Map<String, dynamic>>> stackedRowBlockValues = [];
   List<Map<String, dynamic>> currentRowBlockInts = [], nextRowBlockInts = [];
   Row currentRowBlock = const Row(), nextRowBlock = const Row();
   List<List<Pixel>> pixelArray = List.generate(
@@ -26,13 +26,13 @@ class BlockProvider extends ChangeNotifier {
   void animateAddBlocks() {
     Future.delayed(0.milliseconds, () {
       stackedRowBlocks.add(currentRowBlock);
-      print(stackedRowBlockInts);
+      print(stackedRowBlockValues);
       notifyListeners();
     });
   }
 
   void onTap(BuildContext context) {
-    if (stackedRowBlockInts.length < 12) {
+    if (stackedRowBlockValues.length < 12) {
       currentRowBlockInts = nextRowBlockInts;
       currentRowBlock = nextRowBlock;
 
@@ -46,11 +46,11 @@ class BlockProvider extends ChangeNotifier {
         rowBlockInts: nextRowBlockInts,
       );
 
-      stackedRowBlockInts.add(currentRowBlockInts);
+      stackedRowBlockValues.add(currentRowBlockInts);
 
-      print("Stacked Row Block Ints: $stackedRowBlockInts");
+      print("Stacked Row Block Values: $stackedRowBlockValues");
 
-      if (stackedRowBlockInts.length > 1) {
+      if (stackedRowBlockValues.length > 1) {
         print("activating gravity");
         activateGravity(context);
       }
@@ -66,11 +66,11 @@ class BlockProvider extends ChangeNotifier {
     print("activating gravity");
 
     // loop through the stack from the bottom
-    for (int rowBlockIndex = stackedRowBlockInts.length - 2;
+    for (int rowBlockIndex = stackedRowBlockValues.length - 2;
         rowBlockIndex >= 0;
         rowBlockIndex--) {
       List<Map<String, dynamic>> rowBlockInts =
-          stackedRowBlockInts[rowBlockIndex];
+          stackedRowBlockValues[rowBlockIndex];
       int position = 0;
 
       // loop through each of the blocks in the current row
@@ -88,7 +88,7 @@ class BlockProvider extends ChangeNotifier {
 
         // find the block right under the current block
         List<Map<String, dynamic>> bottomRowBlockInts =
-            stackedRowBlockInts[rowBlockIndex + 1];
+            stackedRowBlockValues[rowBlockIndex + 1];
 
         int bottomBlock = 0;
         int bottomBlockIndex = 0;
@@ -160,7 +160,7 @@ class BlockProvider extends ChangeNotifier {
 
     Future.delayed(400.milliseconds, () {
       stackedRowBlocks = [];
-      for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockInts) {
+      for (List<Map<String, dynamic>> rowBlockInts in stackedRowBlockValues) {
         stackedRowBlocks.add(
           buildBlockRow(
             context,
@@ -175,8 +175,8 @@ class BlockProvider extends ChangeNotifier {
       // check if a row is complete
       Future.delayed(400.milliseconds, () {
         // loop through the stack from the bottom
-        for (int i = stackedRowBlockInts.length - 1; i >= 0; i--) {
-          List<Map<String, dynamic>> rowBlockInts = stackedRowBlockInts[i];
+        for (int i = stackedRowBlockValues.length - 1; i >= 0; i--) {
+          List<Map<String, dynamic>> rowBlockInts = stackedRowBlockValues[i];
 
           // check if the row contains any empty pixel
           // if it doesn't, remove the row and activate gravity again
@@ -184,7 +184,7 @@ class BlockProvider extends ChangeNotifier {
             continue;
           } else {
             // remove the row
-            stackedRowBlockInts.removeAt(i);
+            stackedRowBlockValues.removeAt(i);
             stackedRowBlocks.removeAt(i);
             count += 1;
 
@@ -194,7 +194,7 @@ class BlockProvider extends ChangeNotifier {
         }
 
         for (int i = 0; i < count; i++) {
-          if (stackedRowBlockInts.length < 12) {
+          if (stackedRowBlockValues.length < 12) {
             Future.delayed(500.milliseconds, () {
               currentRowBlockInts = nextRowBlockInts;
               currentRowBlock = nextRowBlock;
@@ -209,7 +209,7 @@ class BlockProvider extends ChangeNotifier {
                 rowBlockInts: nextRowBlockInts,
               );
 
-              if (stackedRowBlockInts.length > 1) {
+              if (stackedRowBlockValues.length > 1) {
                 activateGravity(context);
               }
               notifyListeners();
@@ -278,7 +278,7 @@ class BlockProvider extends ChangeNotifier {
       rowBlockInts: nextRowBlockInts,
     );
 
-    stackedRowBlockInts = [];
+    stackedRowBlockValues = [];
     stackedRowBlocks = [];
 
     animateAddBlocks();

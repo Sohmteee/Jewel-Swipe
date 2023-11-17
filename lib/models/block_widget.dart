@@ -245,13 +245,13 @@ class _BlockWidgetState extends State<BlockWidget> {
                         "color": widget.color,
                       });
 
-                      blockProvider.stackedRowBlockInts[widget.stackIndex] =
+                      blockProvider.stackedRowBlockValues[widget.stackIndex] =
                           widget.rowBlockInts;
 
                       blockProvider.stackedRowBlocks = [];
 
                       for (List<Map<String, dynamic>> rowBlockInts
-                          in blockProvider.stackedRowBlockInts) {
+                          in blockProvider.stackedRowBlockValues) {
                         blockProvider.stackedRowBlocks.add(
                           buildBlockRow(
                             context,
@@ -264,20 +264,20 @@ class _BlockWidgetState extends State<BlockWidget> {
                       blockProvider.stackedRowBlocksWidget =
                           Column(children: blockProvider.stackedRowBlocks);
 
-                      if (blockProvider.stackedRowBlockInts.length > 1) {
+                      if (blockProvider.stackedRowBlockValues.length > 1) {
                         blockProvider.activateGravity(context);
                       }
 
-                      if (blockProvider.stackedRowBlockInts.length < 12) {
+                      if (blockProvider.stackedRowBlockValues.length < 12) {
                         blockProvider.currentRowBlockInts =
                             blockProvider.nextRowBlockInts;
                         blockProvider.currentRowBlock =
                             blockProvider.nextRowBlock;
 
-                        blockProvider.stackedRowBlockInts
+                        blockProvider.stackedRowBlockValues
                             .add(blockProvider.currentRowBlockInts);
                         blockProvider.animateAddBlocks();
-                        print(blockProvider.stackedRowBlockInts);
+                        print(blockProvider.stackedRowBlockValues);
 
                         blockProvider.nextRowBlockInts = generateRowInts();
                         blockProvider.nextRowBlock = buildBlockRow(
@@ -286,7 +286,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                           rowBlockInts: blockProvider.nextRowBlockInts,
                         );
 
-                        if (blockProvider.stackedRowBlockInts.length > 1) {
+                        if (blockProvider.stackedRowBlockValues.length > 1) {
                           blockProvider.activateGravity(context);
                         }
                       }
