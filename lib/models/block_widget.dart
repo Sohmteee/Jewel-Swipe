@@ -268,26 +268,7 @@ class _BlockWidgetState extends State<BlockWidget> {
                         blockProvider.activateGravity(context);
                       }
 
-                      if (blockProvider.stackedRowBlockValues.length < 12) {
-                        blockProvider.currentRowBlockValues =
-                            blockProvider.nextRowBlockInts;
-                        blockProvider.currentRowBlock =
-                            blockProvider.nextRowBlock;
-
-                        blockProvider.animateAddBlocks();
-                        print(blockProvider.stackedRowBlockValues);
-
-                        blockProvider.nextRowBlockInts = generateRowInts();
-                        blockProvider.nextRowBlock = buildBlockRow(
-                          context,
-                          stackIndex: -1,
-                          rowBlockInts: blockProvider.nextRowBlockInts,
-                        );
-
-                        if (blockProvider.stackedRowBlockValues.length > 1) {
-                          blockProvider.activateGravity(context);
-                        }
-                      }
+                      blockProvider.onTap(context);
                     });
                     Future.delayed(1.seconds, () {
                       left = null;
