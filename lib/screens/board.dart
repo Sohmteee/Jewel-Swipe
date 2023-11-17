@@ -85,10 +85,10 @@ class _GameScreenState extends State<GameScreen> {
                     Column(
                       children: List.generate(
                         blockProvider.pixelArray.length,
-                        (index) => Row(
+                        (i) => Row(
                           children: List.generate(
-                            blockProvider.pixelArray[index].length,
-                            (index) => blockProvider.pixelArray[index][index],
+                            blockProvider.pixelArray[i].length,
+                            (j) => blockProvider.pixelArray[i][j],
                           ),
                         ),
                       ),
