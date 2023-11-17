@@ -190,7 +190,7 @@ class BlockProvider extends ChangeNotifier {
             // remove the row
             stackedRowBlockValues.removeAt(i);
             stackedRowBlocks.removeAt(i);
-            count += 1;
+            // count += 1;
 
             // activate gravity again
             activateGravity(context);
