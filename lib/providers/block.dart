@@ -60,7 +60,10 @@ class BlockProvider extends ChangeNotifier {
 
         rowBlockAsList.add(blockWidget);
       }
-      stackedRowBlocksAsList.add(rowBlockAsList);
+
+      stackedRowBlocksAsList.add(Row(
+        children: rowBlockAsList,
+      ),);
     }
 
     stackedRowBlocks = List.generate(
