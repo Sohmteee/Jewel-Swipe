@@ -29,25 +29,28 @@ class BlockProvider extends ChangeNotifier {
   void animateAddBlocks(BuildContext context) {
     double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
 
-    stackedRowBlocksWidget = Column(children: stackedRowBlocks).animate().moveY(
-          begin: 0,
-          end: height,
-          duration: 200.milliseconds,
-          curve: Curves.easeInOut,
-        ) as Column;
-    stackedRowBlockValues.add(currentRowBlockValues);
-    stackedRowBlocks.add(currentRowBlock);
-    if (kDebugMode) {
-      print(
-        List.generate(
-          stackedRowBlockValues.length,
-          (i) => List.generate(
-            stackedRowBlockValues[i].length,
-            (j) => stackedRowBlockValues[i][j]["blockWidth"],
+    stackedRowBlocksWidget =
+        Column(children: stackedRowBlocks).animate(onComplete: (controller) {
+      stackedRowBlockValues.add(currentRowBlockValues);
+      stackedRowBlocks.add(currentRowBlock);
+      if (kDebugMode) {
+        print(
+          List.generate(
+            stackedRowBlockValues.length,
+            (i) => List.generate(
+              stackedRowBlockValues[i].length,
+              (j) => stackedRowBlockValues[i][j]["blockWidth"],
+            ),
           ),
-        ),
-      );
-    }
+        );
+      }
+    }).moveY(
+      begin: 0,
+      end: height,
+      duration: 200.milliseconds,
+      curve: Curves.easeInOut,
+    ) as Column;
+
     notifyListeners();
   }
 
@@ -56,7 +59,7 @@ class BlockProvider extends ChangeNotifier {
       currentRowBlockValues = nextRowBlockInts;
       currentRowBlock = nextRowBlock;
 
-      animateAddBlocks();
+      animateAddBlocks(context);
       stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
       nextRowBlockInts = generateRowInts();
@@ -295,7 +298,7 @@ class BlockProvider extends ChangeNotifier {
     stackedRowBlockValues = [];
     stackedRowBlocks = [];
 
-    animateAddBlocks();
+    animateAddBlocks(context);
     stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
     notifyListeners();
