@@ -21,6 +21,8 @@ class BlockWidget extends StatefulWidget {
     required this.mass,
     this.isBeingDragged,
     this.blockWidget,
+    this.animateFall,
+    this.animateDestroy,
   });
 
   int rowIndex;
@@ -32,6 +34,8 @@ class BlockWidget extends StatefulWidget {
   BlockMass mass;
   bool? isBeingDragged;
   Widget? blockWidget;
+  bool? animateFall;
+  bool? animateDestroy;
 
   @override
   State<BlockWidget> createState() => _BlockWidgetState();
@@ -226,7 +230,9 @@ class _BlockWidgetState extends State<BlockWidget> {
                             "Row values length: ${blockProvider.stackedRowBlockValues.length}");
                       }
                       if (blockProvider.stackedRowBlockValues.length > 1) {
-                        blockProvider.activateGravity(context);
+                        Future.delayed(200.milliseconds, () {
+                          blockProvider.activateGravity(context);
+                        });
                       }
                       Future.delayed(600.milliseconds, () {
                         blockProvider.onTap(context);

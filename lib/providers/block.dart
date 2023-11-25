@@ -94,16 +94,16 @@ class BlockProvider extends ChangeNotifier {
 
         // go to the next block if it's an empty one
         if (rowBlockInt == 0) {
-          if (kDebugMode) {
+          /*if (kDebugMode) {
             print("continued");
-          }
+          }*/
           position += 1;
           continue;
         }
 
-        if (kDebugMode) {
+        /*if (kDebugMode) {
           print("Current position: $position");
-        }
+        }*/
 
         // find the block right under the current block
         List<Map<String, dynamic>> bottomRowBlockInts =
@@ -128,9 +128,9 @@ class BlockProvider extends ChangeNotifier {
           }
         }
 
-        if (kDebugMode) {
+        /*if (kDebugMode) {
           print("Bottom Block Index: $bottomBlockIndex");
-        }
+        }*/
 
         // calculate the position of the row block int
         position += (rowBlockInt == 0) ? 1 : rowBlockInt;
@@ -139,9 +139,9 @@ class BlockProvider extends ChangeNotifier {
 
         // check if the pixel under it is empty
         if (bottomBlock == 0) {
-          if (kDebugMode) {
+          /*if (kDebugMode) {
             print("Bottom is empty");
-          }
+          }*/
 
           //check if the block can drop
           bool canDrop = checkCanDrop(
@@ -153,9 +153,9 @@ class BlockProvider extends ChangeNotifier {
 
           if (canDrop) {
             // drop the block
-            if (kDebugMode) {
+            /*if (kDebugMode) {
               print("Dropping block");
-            }
+            }*/
             Map<String, dynamic> droppingBlock = rowBlockInts[blockIndex];
 
             //replace the remaining parts of the block with zeros
@@ -253,14 +253,14 @@ class BlockProvider extends ChangeNotifier {
     notifyListeners();
 
     if (count >= rowBlockInt) {
-      if (kDebugMode) {
+      /*if (kDebugMode) {
         print("Can drop");
-      }
+      }*/
       return true;
     }
-    if (kDebugMode) {
-      print("Can't drop");
-    }
+    // if (kDebugMode) {
+    //   print("Can't drop");
+    // }
     return false;
   }
 
