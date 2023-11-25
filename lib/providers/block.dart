@@ -4,6 +4,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:jewel_swipe/fxnss/pixel.dart';
 import 'package:jewel_swipe/variables.dart';
 
+import '../models/block_widget.dart';
+
 class BlockProvider extends ChangeNotifier {
   List<Row> stackedRowBlocks = [];
   List<List<Map<String, dynamic>>> stackedRowBlockValues = [];
@@ -24,7 +26,9 @@ class BlockProvider extends ChangeNotifier {
 
   // int count = 0;
 
-  void animateAddBlocks() {
+  void animateAddBlocks(BuildContext context) {
+    double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
+
     for (int stackIndex = 0;
         stackIndex < stackedRowBlockValues.length;
         stackIndex++) {
@@ -42,7 +46,12 @@ class BlockProvider extends ChangeNotifier {
               ? BlockMass.empty
               : BlockMass.filled,
           color: blockValues["color"],
-        );
+        ).animate().moveY(
+              begin: 0,
+              end: height,
+              duration: 200.milliseconds,
+              curve: Curves.easeInOut,
+            );
       }
     }
     stackedRowBlockValues.add(currentRowBlockValues);
