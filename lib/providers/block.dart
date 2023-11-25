@@ -60,7 +60,18 @@ class BlockProvider extends ChangeNotifier {
 
         rowBlockAsList.add(blockWidget);
       }
+      stackedRowBlocksAsList.add(rowBlockAsList);
     }
+
+    stackedRowBlocks = stackedRowBlocksAsList
+        .map(
+          (rowBlockAsList) => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: rowBlockAsList,
+          ),
+        )
+        .toList();
+
     stackedRowBlockValues.add(currentRowBlockValues);
     stackedRowBlocks.add(currentRowBlock);
     if (kDebugMode) {
