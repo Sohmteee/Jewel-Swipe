@@ -30,7 +30,7 @@ class BlockProvider extends ChangeNotifier {
 
   void animateAddBlocks(BuildContext context) {
     double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
-    List stackedRowBlocksAsList = [];
+    List<Row> stackedRowBlocksAsList = [];
 
     for (int stackIndex = 0;
         stackIndex < stackedRowBlockValues.length;
@@ -63,7 +63,12 @@ class BlockProvider extends ChangeNotifier {
       stackedRowBlocksAsList.add(rowBlockAsList);
     }
 
-    stackedRowBlocks = List.generate(, (index) => null);
+    stackedRowBlocks = List.generate(
+      stackedRowBlocksAsList.length,
+      (index) => Row(
+        children: stackedRowBlocksAsList[index],
+      ),
+    );
 
     Future.delayed(200.milliseconds, () {
       stackedRowBlockValues.add(currentRowBlockValues);
