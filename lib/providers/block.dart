@@ -42,7 +42,7 @@ class BlockProvider extends ChangeNotifier {
       for (int rowIndex = 0; rowIndex < rowBlockValues.length; rowIndex++) {
         var blockValues = rowBlockValues[rowIndex];
 
-        Widget blockWidget = BlockWidget(
+        final blockWidget = Block(
           rowIndex: rowIndex,
           stackIndex: stackIndex,
           rowBlockValues: rowBlockValues,
