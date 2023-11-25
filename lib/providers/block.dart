@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jewel_swipe/models/block.dart';
 import 'package:jewel_swipe/variables.dart';
 
 import '../fxns.dart';
