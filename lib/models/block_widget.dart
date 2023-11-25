@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -70,56 +71,7 @@ class _BlockWidgetState extends State<BlockWidget> {
               Positioned(
                 left: left,
                 child: GestureDetector(
-                  onTap: () {
-                    // int leftBlocks = widget.rowIndex;
-                    // int rightBlocks = widget.rowBlockInts.length - widget.rowIndex - 1;
-
-                    widget.isBeingDragged = true;
-                    int leftBlocks = widget.rowIndex;
-                    // int rightBlocks = widget.rowBlockInts.length - widget.rowIndex - 1;
-
-                    double leftSpace = 0, rightSpace = 0;
-
-                    // calculate left and right spaces
-                    if (widget.rowIndex == 0) {
-                      leftSpace = 0;
-                    } else {
-                      int count = 0;
-                      for (int i = leftBlocks - 1; i >= 0; i--) {
-                        if (widget.rowBlockValues[i]["blockWidth"] == 0) {
-                          leftSpace +=
-                              (MediaQuery.of(context).size.width - 48.w) /
-                                  rowLength;
-                          count += 1;
-                        } else {
-                          break;
-                        }
-                      }
-                      leftSpace += count - 1 < 0 ? 0 : count - 1;
-                    }
-
-                    if (widget.rowIndex == widget.rowBlockValues.length - 1) {
-                      rightSpace = 0;
-                    } else {
-                      int count = 0;
-                      for (int i = widget.rowIndex + 1;
-                          i <= widget.rowBlockValues.length - 1;
-                          i++) {
-                        if (widget.rowBlockValues[i]["blockWidth"] == 0) {
-                          rightSpace +=
-                              (MediaQuery.of(context).size.width - 48.w) /
-                                  rowLength;
-                          count += 1;
-                        } else {
-                          break;
-                        }
-                      }
-                      rightSpace += count - 1 < 0 ? 0 : count - 1;
-                    }
-
-                    print("Left Space: $leftSpace");
-                    print("Right Space: $rightSpace");
-                  },
+                  onTap: () {},
                   onPanUpdate: (details) {
                     setState(() {
                       widget.isBeingDragged = true;
@@ -137,24 +89,24 @@ class _BlockWidgetState extends State<BlockWidget> {
                       if (widget.rowIndex == 0) {
                         leftSpace = 0;
                       } else {
-                        int count = 0;
+                        // int count = 0;
                         for (int i = leftBlocks - 1; i >= 0; i--) {
                           if (widget.rowBlockValues[i]["blockWidth"] == 0) {
                             leftSpace +=
                                 (MediaQuery.of(context).size.width - 48.w) /
                                     rowLength;
-                            count += 1;
+                            // count += 1;
                           } else {
                             break;
                           }
-                          leftSpace += count - 1 < 0 ? 0 : count - 1;
+                          // leftSpace += count - 1 < 0 ? 0 : count - 1;
                         }
                       }
 
                       if (widget.rowIndex == widget.rowBlockValues.length - 1) {
                         rightSpace = 0;
                       } else {
-                        int count = 0;
+                        // int count = 0;
                         for (int i = widget.rowIndex + 1;
                             i <= widget.rowBlockValues.length - 1;
                             i++) {
@@ -162,11 +114,11 @@ class _BlockWidgetState extends State<BlockWidget> {
                             rightSpace +=
                                 (MediaQuery.of(context).size.width - 48.w) /
                                     rowLength;
-                            count += 1;
+                            // count += 1;
                           } else {
                             break;
                           }
-                          rightSpace += count - 1 < 0 ? 0 : count - 1;
+                          // rightSpace += count - 1 < 0 ? 0 : count - 1;
                         }
                       }
 
@@ -184,7 +136,9 @@ class _BlockWidgetState extends State<BlockWidget> {
                         }
                       }
 
-                      print(left);
+                      if (kDebugMode) {
+                        print(left);
+                      }
 
                       /* // highlight position on pixels
                         int boardPosition = 0;
@@ -232,10 +186,14 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                       left ?? 0;
 
-                      print("Left: $left");
-                      print("Width: $height");
+                      if (kDebugMode) {
+                        print("Left: $left");
+                        print("Width: $height");
+                      }
                       int shift = (left! / height).round();
-                      print(shift);
+                      if (kDebugMode) {
+                        print(shift);
+                      }
 
                       left = shift * height;
 
@@ -263,12 +221,14 @@ class _BlockWidgetState extends State<BlockWidget> {
 
                       blockProvider.stackedRowBlocksWidget =
                           Column(children: blockProvider.stackedRowBlocks);
-                      print(
-                          "Row values length: ${blockProvider.stackedRowBlockValues.length}");
+                      if (kDebugMode) {
+                        print(
+                            "Row values length: ${blockProvider.stackedRowBlockValues.length}");
+                      }
                       if (blockProvider.stackedRowBlockValues.length > 1) {
                         blockProvider.activateGravity(context);
                       }
-                      Future.delayed(800.milliseconds, () {
+                      Future.delayed(600.milliseconds, () {
                         blockProvider.onTap(context);
                       });
                     });

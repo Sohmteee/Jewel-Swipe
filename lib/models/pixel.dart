@@ -12,7 +12,7 @@ class Pixel extends StatefulWidget {
     this.y,
   });
   Color? color;
-  var child;
+  dynamic child;
   double? x, y;
 
   @override

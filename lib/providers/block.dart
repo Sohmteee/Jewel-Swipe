@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:jewel_swipe/fxns.dart';
@@ -24,9 +25,9 @@ class BlockProvider extends ChangeNotifier {
   // int count = 0;
 
   void animateAddBlocks() {
-    Future.delayed(0.milliseconds, () {
-      stackedRowBlockValues.add(currentRowBlockValues);
-      stackedRowBlocks.add(currentRowBlock);
+    stackedRowBlockValues.add(currentRowBlockValues);
+    stackedRowBlocks.add(currentRowBlock);
+    if (kDebugMode) {
       print(
         List.generate(
           stackedRowBlockValues.length,
@@ -36,8 +37,8 @@ class BlockProvider extends ChangeNotifier {
           ),
         ),
       );
-      notifyListeners();
-    });
+    }
+    notifyListeners();
   }
 
   void onTap(BuildContext context) {
@@ -55,11 +56,15 @@ class BlockProvider extends ChangeNotifier {
         rowBlockInts: nextRowBlockInts,
       );
 
-      print(
-          "Stacked Row Block Values: ${List.generate(stackedRowBlockValues.length, (i) => List.generate(stackedRowBlockValues[i].length, (j) => stackedRowBlockValues[i][j]["blockWidth"]))}");
+      if (kDebugMode) {
+        print(
+            "Stacked Row Block Values: ${List.generate(stackedRowBlockValues.length, (i) => List.generate(stackedRowBlockValues[i].length, (j) => stackedRowBlockValues[i][j]["blockWidth"]))}");
+      }
 
       if (stackedRowBlockValues.length > 1) {
-        print("activating gravity");
+        if (kDebugMode) {
+          print("activating gravity");
+        }
         activateGravity(context);
       }
 
@@ -71,7 +76,9 @@ class BlockProvider extends ChangeNotifier {
   }
 
   void activateGravity(BuildContext context) {
-    print("activating gravity");
+    if (kDebugMode) {
+      print("activating gravity");
+    }
 
     // loop through the stack from the bottom
     for (int rowBlockIndex = stackedRowBlockValues.length - 2;
@@ -87,12 +94,16 @@ class BlockProvider extends ChangeNotifier {
 
         // go to the next block if it's an empty one
         if (rowBlockInt == 0) {
-          print("continued");
+          if (kDebugMode) {
+            print("continued");
+          }
           position += 1;
           continue;
         }
 
-        print("Current position: $position");
+        if (kDebugMode) {
+          print("Current position: $position");
+        }
 
         // find the block right under the current block
         List<Map<String, dynamic>> bottomRowBlockInts =
@@ -117,7 +128,9 @@ class BlockProvider extends ChangeNotifier {
           }
         }
 
-        print("Bottom Block Index: $bottomBlockIndex");
+        if (kDebugMode) {
+          print("Bottom Block Index: $bottomBlockIndex");
+        }
 
         // calculate the position of the row block int
         position += (rowBlockInt == 0) ? 1 : rowBlockInt;
@@ -126,7 +139,9 @@ class BlockProvider extends ChangeNotifier {
 
         // check if the pixel under it is empty
         if (bottomBlock == 0) {
-          print("Bottom is empty");
+          if (kDebugMode) {
+            print("Bottom is empty");
+          }
 
           //check if the block can drop
           bool canDrop = checkCanDrop(
@@ -138,10 +153,12 @@ class BlockProvider extends ChangeNotifier {
 
           if (canDrop) {
             // drop the block
-            print("Dropping block");
+            if (kDebugMode) {
+              print("Dropping block");
+            }
             Map<String, dynamic> droppingBlock = rowBlockInts[blockIndex];
 
-            //replace the remaning parts of the block with zeros
+            //replace the remaining parts of the block with zeros
             rowBlockInts[blockIndex] = {
               "blockWidth": 0,
               "color": Colors.transparent
@@ -236,10 +253,14 @@ class BlockProvider extends ChangeNotifier {
     notifyListeners();
 
     if (count >= rowBlockInt) {
-      print("Can drop");
+      if (kDebugMode) {
+        print("Can drop");
+      }
       return true;
     }
-    print("Can't drop");
+    if (kDebugMode) {
+      print("Can't drop");
+    }
     return false;
   }
 
