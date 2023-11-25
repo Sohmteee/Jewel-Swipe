@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jewel_swipe/fxns.dart';
-import 'package:jewel_swipe/models/pixel.dart';
+import 'package:jewel_swipe/fxnss/pixel.dart';
 import 'package:jewel_swipe/variables.dart';
 
 class BlockProvider extends ChangeNotifier {
@@ -26,31 +24,40 @@ class BlockProvider extends ChangeNotifier {
 
   // int count = 0;
 
-  void animateAddBlocks(BuildContext context) {
-    double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
+  void animateAddBlocks() {
+    for (int stackIndex = 0;
+        stackIndex < stackedRowBlockValues.length;
+        stackIndex++) {
+      List<Map<String, dynamic>> rowBlockValues =
+          stackedRowBlockValues[stackIndex];
+      for (int rowIndex = 0; rowIndex < rowBlockValues.length; rowIndex++) {
+        var blockValues = rowBlockValues[rowIndex];
 
-    stackedRowBlocksWidget =
-        Column(children: stackedRowBlocks).animate(onComplete: (controller) {
-      stackedRowBlockValues.add(currentRowBlockValues);
-      stackedRowBlocks.add(currentRowBlock);
-      if (kDebugMode) {
-        print(
-          List.generate(
-            stackedRowBlockValues.length,
-            (i) => List.generate(
-              stackedRowBlockValues[i].length,
-              (j) => stackedRowBlockValues[i][j]["blockWidth"],
-            ),
-          ),
+        Widget blockWidget = BlockWidget(
+          rowIndex: rowIndex,
+          stackIndex: stackIndex,
+          rowBlockValues: rowBlockValues,
+          blockWidth: blockValues["blockWidth"],
+          mass: blockValues["blockWidth"] == 0
+              ? BlockMass.empty
+              : BlockMass.filled,
+          color: blockValues["color"],
         );
       }
-    }).moveY(
-      begin: 0,
-      end: height,
-      duration: 200.milliseconds,
-      curve: Curves.easeInOut,
-    ) as Column;
-
+    }
+    stackedRowBlockValues.add(currentRowBlockValues);
+    stackedRowBlocks.add(currentRowBlock);
+    if (kDebugMode) {
+      print(
+        List.generate(
+          stackedRowBlockValues.length,
+          (i) => List.generate(
+            stackedRowBlockValues[i].length,
+            (j) => stackedRowBlockValues[i][j]["blockWidth"],
+          ),
+        ),
+      );
+    }
     notifyListeners();
   }
 
@@ -59,7 +66,7 @@ class BlockProvider extends ChangeNotifier {
       currentRowBlockValues = nextRowBlockInts;
       currentRowBlock = nextRowBlock;
 
-      animateAddBlocks(context);
+      animateAddBlocks();
       stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
       nextRowBlockInts = generateRowInts();
