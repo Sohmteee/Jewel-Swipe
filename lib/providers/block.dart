@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jewel_swipe/fxns.dart';
 import 'package:jewel_swipe/models/pixel.dart';
 import 'package:jewel_swipe/variables.dart';
@@ -25,12 +26,15 @@ class BlockProvider extends ChangeNotifier {
 
   // int count = 0;
 
-  double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
+  void animateAddBlocks(BuildContext context) {
+    double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
 
-  void animateAddBlocks() {
-    stackedRowBlocksWidget = Column(children: stackedRowBlocks)
-        .animate()
-        .moveY(begin: 0, end: height) as Column;
+    stackedRowBlocksWidget = Column(children: stackedRowBlocks).animate().moveY(
+          begin: 0,
+          end: height,
+          duration: 200.milliseconds,
+          curve: Curves.easeInOut,
+        ) as Column;
     stackedRowBlockValues.add(currentRowBlockValues);
     stackedRowBlocks.add(currentRowBlock);
     if (kDebugMode) {
