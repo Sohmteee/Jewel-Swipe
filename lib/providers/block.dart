@@ -54,6 +54,8 @@ class BlockProvider extends ChangeNotifier {
               duration: 200.milliseconds,
               curve: Curves.easeInOut,
             );
+
+            ro
       }
     }
     stackedRowBlockValues.add(currentRowBlockValues);
