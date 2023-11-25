@@ -25,9 +25,12 @@ class BlockProvider extends ChangeNotifier {
 
   // int count = 0;
 
+  double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
+
   void animateAddBlocks() {
-    stackedRowBlocksWidget =
-        Column(children: stackedRowBlocks).animate().moveY();
+    stackedRowBlocksWidget = Column(children: stackedRowBlocks)
+        .animate()
+        .moveY(begin: 0, end: height) as Column;
     stackedRowBlockValues.add(currentRowBlockValues);
     stackedRowBlocks.add(currentRowBlock);
     if (kDebugMode) {
