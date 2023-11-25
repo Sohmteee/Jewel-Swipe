@@ -26,11 +26,11 @@ class _GameScreenState extends State<GameScreen> {
     final blockProvider = Provider.of<BlockProvider>(context, listen: false);
 
     blockProvider.stackedRowBlocksWidget =
-        Column(children: blockProvider.stackedRowBlocks);
+        Column(children: blockProvider.rowBlocks);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       blockProvider.startGame(context);
-    }); 
+    });
   }
 
   @override
