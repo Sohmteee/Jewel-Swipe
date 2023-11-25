@@ -63,13 +63,7 @@ class BlockProvider extends ChangeNotifier {
       stackedRowBlocksAsList.add(rowBlockAsList);
     }
 
-    stackedRowBlocks = stackedRowBlocksAsList
-        .map(
-          (rowBlockAsList) => Row(
-            children: rowBlockAsList,
-          ),
-        )
-        .toList();
+    stackedRowBlocks = List.generate(, (index) => null);
 
     Future.delayed(200.milliseconds, () {
       stackedRowBlockValues.add(currentRowBlockValues);
