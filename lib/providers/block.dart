@@ -344,4 +344,9 @@ class BlockProvider extends ChangeNotifier {
 
 /* gameLoop(Duration frameRate) {
     /* Timer.periodic(frameRate, (timer) {
-      setState
+      setState(() {
+        currentBlock.moveBlock(Directions.down);
+      });
+    }); */
+  } */
+}
