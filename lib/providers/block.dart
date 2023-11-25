@@ -22,35 +22,34 @@ class BlockProvider extends ChangeNotifier {
     ),
   );
 
-  late Widget stackedRowBlocksWidget;
+  late Column stackedRowBlocksWidget;
 
   // int count = 0;
 
   void animateAddBlocks(BuildContext context) {
     double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
 
-    stackedRowBlocksWidget = Column(children: stackedRowBlocks).animate(
-      onComplete: (controller) {
-        stackedRowBlockValues.add(currentRowBlockValues);
-        stackedRowBlocks.add(currentRowBlock);
-        if (kDebugMode) {
-          print(
-            List.generate(
-              stackedRowBlockValues.length,
-              (i) => List.generate(
-                stackedRowBlockValues[i].length,
-                (j) => stackedRowBlockValues[i][j]["blockWidth"],
-              ),
+    stackedRowBlocksWidget =
+        Column(children: stackedRowBlocks).animate(onComplete: (controller) {
+      stackedRowBlockValues.add(currentRowBlockValues);
+      stackedRowBlocks.add(currentRowBlock);
+      if (kDebugMode) {
+        print(
+          List.generate(
+            stackedRowBlockValues.length,
+            (i) => List.generate(
+              stackedRowBlockValues[i].length,
+              (j) => stackedRowBlockValues[i][j]["blockWidth"],
             ),
-          );
-        }
-      },
-    ).moveY(
+          ),
+        );
+      }
+    }).moveY(
       begin: 0,
       end: height,
       duration: 200.milliseconds,
       curve: Curves.easeInOut,
-    );
+    ) as Column;
 
     notifyListeners();
   }
@@ -299,7 +298,7 @@ class BlockProvider extends ChangeNotifier {
     stackedRowBlockValues = [];
     stackedRowBlocks = [];
 
-    animateAddBlocks(context);
+    animateAddBlocks();
     stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
     notifyListeners();
