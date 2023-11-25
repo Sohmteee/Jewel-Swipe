@@ -210,21 +210,21 @@ class _BlockWidgetState extends State<BlockWidget> {
                       blockProvider.stackedRowBlockValues[widget.stackIndex] =
                           widget.rowBlockValues;
 
-                      blockProvider.rowBlocks = [];
+                      blockProvider.stackedRowBlocks = [];
 
                       for (List<Map<String, dynamic>> rowBlockValues
                           in blockProvider.stackedRowBlockValues) {
-                        blockProvider.rowBlocks.add(
+                        blockProvider.stackedRowBlocks.add(
                           buildBlockRow(
                             context,
-                            stackIndex: blockProvider.rowBlocks.length,
+                            stackIndex: blockProvider.stackedRowBlocks.length,
                             rowBlockInts: rowBlockValues,
                           ),
                         );
                       }
 
                       blockProvider.stackedRowBlocksWidget =
-                          Column(children: blockProvider.rowBlocks);
+                          Column(children: blockProvider.stackedRowBlocks);
                       if (kDebugMode) {
                         print(
                             "Row values length: ${blockProvider.stackedRowBlockValues.length}");
