@@ -26,10 +26,8 @@ class BlockProvider extends ChangeNotifier {
   // int count = 0;
 
   void animateAddBlocks() {
-    stackedRowBlocksWidget = Column(children: stackedRowBlocks).animate(
-      Curves.easeInCubic,
-      duration: 200.milliseconds,
-    );
+    stackedRowBlocksWidget =
+        Column(children: stackedRowBlocks).animate().moveY();
     stackedRowBlockValues.add(currentRowBlockValues);
     stackedRowBlocks.add(currentRowBlock);
     if (kDebugMode) {
