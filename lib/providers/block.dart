@@ -22,9 +22,14 @@ class BlockProvider extends ChangeNotifier {
   );
 
   late Column stackedRowBlocksWidget;
+
   // int count = 0;
 
   void animateAddBlocks() {
+    stackedRowBlocksWidget = Column(children: stackedRowBlocks).animate(
+      Curves.easeInCubic,
+      duration: 200.milliseconds,
+    );
     stackedRowBlockValues.add(currentRowBlockValues);
     stackedRowBlocks.add(currentRowBlock);
     if (kDebugMode) {
@@ -295,7 +300,7 @@ class BlockProvider extends ChangeNotifier {
     // gameLoop(frameRate);
   }
 
-  /* gameLoop(Duration frameRate) {
+/* gameLoop(Duration frameRate) {
     /* Timer.periodic(frameRate, (timer) {
       setState(() {
         currentBlock.moveBlock(Directions.down);
