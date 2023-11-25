@@ -77,7 +77,7 @@ class BlockProvider extends ChangeNotifier {
       currentRowBlockValues = nextRowBlockInts;
       currentRowBlock = nextRowBlock;
 
-      animateAddBlocks();
+      animateAddBlocks(context);
       stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
       nextRowBlockInts = generateRowInts();
@@ -316,7 +316,7 @@ class BlockProvider extends ChangeNotifier {
     stackedRowBlockValues = [];
     stackedRowBlocks = [];
 
-    animateAddBlocks();
+    animateAddBlocks(context);
     stackedRowBlocksWidget = Column(children: stackedRowBlocks);
 
     notifyListeners();
