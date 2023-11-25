@@ -37,7 +37,7 @@ class BlockProvider extends ChangeNotifier {
         stackIndex++) {
       List<Map<String, dynamic>> rowBlockValues =
           stackedRowBlockValues[stackIndex];
-      List rowBlockAsList = [];
+      List<Widget> rowBlockAsList = [];
 
       for (int rowIndex = 0; rowIndex < rowBlockValues.length; rowIndex++) {
         var blockValues = rowBlockValues[rowIndex];
@@ -61,16 +61,16 @@ class BlockProvider extends ChangeNotifier {
         rowBlockAsList.add(blockWidget);
       }
 
-      stackedRowBlocksAsList.add(Row(
-        children: rowBlockAsList,
-      ),);
+      stackedRowBlocksAsList.add(
+        Row(
+          children: rowBlockAsList,
+        ),
+      );
     }
 
     stackedRowBlocks = List.generate(
       stackedRowBlocksAsList.length,
-      (index) => Row(
-        children: stackedRowBlocksAsList[index],
-      ),
+      (index) => stackedRowBlocksAsList[index],
     );
 
     Future.delayed(200.milliseconds, () {
