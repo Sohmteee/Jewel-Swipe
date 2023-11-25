@@ -63,26 +63,30 @@ class BlockProvider extends ChangeNotifier {
       stackedRowBlocksAsList.add(rowBlockAsList);
     }
 
-    stackedRowBlocks = List.generate(stackedRowBlocksAsList.length, (index) => 
-      Row(
-        children: stackedRowBlocksAsList[index],
-      ),
-    
-    );
-
-    stackedRowBlockValues.add(currentRowBlockValues);
-    stackedRowBlocks.add(currentRowBlock);
-    if (kDebugMode) {
-      print(
-        List.generate(
-          stackedRowBlockValues.length,
-          (i) => List.generate(
-            stackedRowBlockValues[i].length,
-            (j) => stackedRowBlockValues[i][j]["blockWidth"],
+    stackedRowBlocks = stackedRowBlocksAsList
+        .map(
+          (rowBlockAsList) => Row(
+            children: rowBlockAsList,
           ),
-        ),
-      );
-    }
+        )
+        .toList();
+
+    Future.delayed(200.milliseconds, () {
+      stackedRowBlockValues.add(currentRowBlockValues);
+      stackedRowBlocks.add(currentRowBlock);
+      if (kDebugMode) {
+        print(
+          List.generate(
+            stackedRowBlockValues.length,
+            (i) => List.generate(
+              stackedRowBlockValues[i].length,
+              (j) => stackedRowBlockValues[i][j]["blockWidth"],
+            ),
+          ),
+        );
+      }
+      notifyListeners();
+    });
     notifyListeners();
   }
 
