@@ -30,13 +30,14 @@ class BlockProvider extends ChangeNotifier {
 
   void animateAddBlocks(BuildContext context) {
     double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
+    List stackedRowBlocksAsList = [];
 
     for (int stackIndex = 0;
         stackIndex < stackedRowBlockValues.length;
         stackIndex++) {
       List<Map<String, dynamic>> rowBlockValues =
           stackedRowBlockValues[stackIndex];
-      List rowBlockAsList;
+      List rowBlockAsList = [];
 
       for (int rowIndex = 0; rowIndex < rowBlockValues.length; rowIndex++) {
         var blockValues = rowBlockValues[rowIndex];
@@ -57,7 +58,7 @@ class BlockProvider extends ChangeNotifier {
               curve: Curves.easeInOut,
             );
 
-            rowBlockAsList
+        rowBlockAsList.add(blockWidget);
       }
     }
     stackedRowBlockValues.add(currentRowBlockValues);
