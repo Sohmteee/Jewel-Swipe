@@ -18,7 +18,7 @@ class BlockProvider extends ChangeNotifier {
     (columnIndex) => List.generate(
       rowLength,
       (rowIndex) => Pixel(
-        color: Colors.grey[900]!.withOpacity(.2),
+        color: Colors.grey[900]!.withOpacity(.5),
         // child: ("$columnIndex, $rowIndex"),
       ),
     ),
