@@ -73,6 +73,20 @@ class _GameScreenState extends State<GameScreen> {
     } */
     return Scaffold(
       backgroundColor: Colors.deepPurple,
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple[600],
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.arrow_back_ios),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.settings),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),

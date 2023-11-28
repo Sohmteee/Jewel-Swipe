@@ -29,7 +29,7 @@ class BlockProvider extends ChangeNotifier {
   // int count = 0;
 
   void animateAddBlocks(BuildContext context) {
-    double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
+    /* double height = (MediaQuery.of(context).size.width - 48.w) / rowLength;
     List<Row> stackedRowBlocksAsList = [];
 
     for (int stackIndex = 0;
@@ -72,23 +72,20 @@ class BlockProvider extends ChangeNotifier {
       stackedRowBlocksAsList.length,
       (index) => stackedRowBlocksAsList[index],
     );
-
-    Future.delayed(200.milliseconds, () {
-      stackedRowBlockValues.add(currentRowBlockValues);
-      stackedRowBlocks.add(currentRowBlock);
-      if (kDebugMode) {
-        print(
-          List.generate(
-            stackedRowBlockValues.length,
-            (i) => List.generate(
-              stackedRowBlockValues[i].length,
-              (j) => stackedRowBlockValues[i][j]["blockWidth"],
-            ),
+ */
+    stackedRowBlockValues.add(currentRowBlockValues);
+    stackedRowBlocks.add(currentRowBlock);
+    if (kDebugMode) {
+      print(
+        List.generate(
+          stackedRowBlockValues.length,
+          (i) => List.generate(
+            stackedRowBlockValues[i].length,
+            (j) => stackedRowBlockValues[i][j]["blockWidth"],
           ),
-        );
-      }
-      notifyListeners();
-    });
+        ),
+      );
+    }
     notifyListeners();
   }
 
