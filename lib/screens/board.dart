@@ -90,7 +90,7 @@ class _GameScreenState extends State<GameScreen> {
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/background.png"),
               fit: BoxFit.cover,
