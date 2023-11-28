@@ -88,8 +88,14 @@ class _GameScreenState extends State<GameScreen> {
         ],
       ),
       body: SafeArea(
-        child: Padding(
+        child: Container(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Consumer<BlockProvider>(builder: (context, blockProvider, _) {
             return Column(
               children: [
