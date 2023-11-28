@@ -99,6 +99,7 @@ class _GameScreenState extends State<GameScreen> {
           child: Consumer<BlockProvider>(builder: (context, blockProvider, _) {
             return Column(
               children: [
+                const Spacer(),
                 Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
@@ -135,7 +136,7 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ),
                 const Spacer(),
-                Row(
+                /* Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
@@ -189,6 +190,7 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                   ],
                 ),
+               */
               ],
             );
           }),
